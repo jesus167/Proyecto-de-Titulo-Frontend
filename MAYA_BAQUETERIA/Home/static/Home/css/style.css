@@ -1,0 +1,65 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(imagenes/fondos/fondo_1.png);
+	background-size: 150%;
+}
+
+.logo {
+	margin-top: 15%;
+	padding: 8px;
+	height: 60px;
+	width: 170px;
+}
+
+.sidenav {
+	text-align: center;
+	height: 100%;
+	width: 200px;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color:#6d5850ec;
+	overflow-x: hidden;                
+}
+.sidenav a {
+	padding: 0px;
+	text-decoration: none;
+	font-size: 18px;
+	color: #c9ac6f;
+	display: block;
+	text-align: center;
+	font-family: sans-serif;
+}
+.sidenav a:hover {
+	background-color: #ffffff;border-radius: 10PX;
+}
+.main {
+
+	background-color: rgba(0, 0, 0, 0.87);
+	align-items: 100%;
+	margin-left: 200px;
+	font-size: 16px;
+	color:#ffffff;
+	font-family: sans-serif;
+	padding: 0px 10px;
+}
+.display {
+	display:inline-block;
+	width: auto;
+	margin-top: 70%;
+	margin-right: 10%;
+}
+.d2 {
+
+	margin-top: 30%;
+}
+
+
+.navbar {
+	background-color: rgba(48, 32, 9, 0.774);
+	height: 100px;
+	width: 100%;
+	margin-left: 200px;
+}
