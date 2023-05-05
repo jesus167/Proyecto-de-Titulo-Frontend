@@ -1,23 +1,44 @@
-body{
-    background-image: url(../img/fondo2.1.png);
-    background-repeat: no-repeat;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#principal{
+    background: url(../img/fondo2.1.png) no-repeat center center fixed;
     background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 120vh;
+
+
+}
+.login{
+    width: 100vw;
+    display: block;
+}
+.logo{
+    height: 100px;
+    max-width: 300px;
+    min-width: 200px;
+}
+.logo img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 .card{
+    display: flex;
+    max-width: 50%;
+    margin-top: 40px;
+    margin-left: 20%;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.7);
     border: black 8px solid;
-    box-shadow: inset 0 0 0 5px white, 8px 8px 20px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 0 0 5px #d74e33d6, 8px 8px 20px #d74e336a;
 }   
-.titulo{
+.card .titulo{
     padding-top: 20px;
-    padding-bottom: 20px;
-    color: aliceblue;
+    padding-bottom: 10px;
+    color: rgb(222, 187, 147);
     justify-content: center;
     text-align: center;
     align-items: center;
@@ -27,11 +48,16 @@ body{
 
 .label{
     color:aliceblue;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     padding-left: 10px;
     font-size: 15px;
+}
+.alerta{
+    color: #d74e33d6;
+    visibility: hidden;
 }
 .btn{
     max-width: 300;
     margin-bottom: 30px;
+    background-color: rgb(222, 187, 147);
 }
