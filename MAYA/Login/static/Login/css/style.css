@@ -33,7 +33,7 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.7);
     border: black 8px solid;
-    box-shadow: inset 0 0 0 5px #d74e33d6, 8px 8px 20px #d74e336a;
+    box-shadow: inset 0 0 0 5px #dbd8a2, 8px 8px 20px #dbd8a2;
 }   
 .card .titulo{
     padding-top: 20px;

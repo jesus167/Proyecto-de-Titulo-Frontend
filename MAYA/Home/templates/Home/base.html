@@ -16,26 +16,42 @@
         <title>MAYA</title>
     </head>
     <body class="container-fluid" id="principal">
-        <div class="login">
-            <div class="logo">
+            
+        <div class="con_nav">
+            <div class="imagen">
                 <img src="{% static 'Home/img/logo1.png' %}"/>
             </div>
-        <div class="sidenav">
-            <div class="display">
-                <ul>
-                    <a href="#">Pedidos</a><br>
-                    <a href="#">Ficha Técnica</a><br>
-                    <a href="#">Usuarias</a><br>
-                    <a class="{% if request.path == '/inventario' %}active{%endif%}" href="{% url 'Inventario'%}">Inventario</a><br>
-                    <a href="#">Ventas</a>
-                </ul>
+        </div>
+        <div class="centro"> 
+            <div class="sidenav">
+                <div class="perfil">
+                    <img class="intperfil" src="{% static 'Home/img/mujer.png' %}"/>
+                    <a href="#">Mi perfil</a>
+                </div>
+                <div class="display">
+                    <ul>
+                        <a href="#">Clientas</a>
+                        <a href="#">Pedidos</a>
+                        <a href="#">Ficha Técnica</a>
+                        <a href="#">Usuarias</a>
+                        <a class="{% if request.path == '/inventario' %}active{%endif%}" href="{% url 'Inventario'%}">Inventario</a>
+                        <a href="#">Ventas</a>
+
+
+                    </br>
+                    </br>
+
+                        <a href="#">Recuperar contraseña</a>
+                        <a href="#">Cerrar Sesión</a>
+                    </ul>
+                </div>
+            </div>
+            <div class="cambiante">
+                {% block content %}
+
+                {% endblock %}
             </div>
         </div>
-
-
-    {% block content %}
-
-    {% endblock %}
 
     <!-- Optional JavaScript; choose one of the two! -->
 
