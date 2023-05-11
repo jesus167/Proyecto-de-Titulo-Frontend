@@ -32,3 +32,7 @@ from .forms import LoginForm
 
 def login(request):
     return render(request, 'Login/login.html')
+
+
+def registro(request):
+    return render(request, 'Login/registro.html')
