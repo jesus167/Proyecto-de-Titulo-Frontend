@@ -57,7 +57,17 @@
     visibility: hidden;
 }
 .btn{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+.btn #boton {
     max-width: 300;
     margin-bottom: 30px;
     background-color: rgb(222, 187, 147);
+    
+}
+.btn #boton ::before{
+    background-color: beige;
 }

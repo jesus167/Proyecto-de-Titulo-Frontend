@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Login',
     'Home',
-    'Inventario'
+    'Inventario',
+    'Clientas'
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,8 @@ DATABASES = {
     }
 }
 
+LOGIN_REDIRECT_URL = "index.html/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
