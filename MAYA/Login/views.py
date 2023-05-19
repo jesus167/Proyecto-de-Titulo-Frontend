@@ -1,4 +1,4 @@
-import requests
+import requests , json
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
@@ -6,7 +6,7 @@ from django.contrib import messages
 from .forms import LoginForm
 
 
-url = "http://127.0.0.1:8000/api/usuaria/"
+url = "http://127.0.0.1:8000/api/login/"
 
 # Create your views here.
 
@@ -46,18 +46,20 @@ def login(request):
             password = request.POST['password']
             canal = 1
             user = {
-                'correo': username,
-                'pwd': password,
-                'canal': canal
-            }
-            data =  requests.get(url, user)
+                        'correo': username,
+                        'pwd': password,
+                        'canal': canal
+                    }
+            data =  requests.post(url, json = user)
             if data.status_code == 200:
-                if authenticate:
-                    print(data)
-                    print('logueado')
+                print(data)
+                print('logueado')
+                return redirect
+
 
             else:
                 print(data.status_code)
                 print('no logueado')
+                return render(request, 'Login/login.html')
 
     return render(request, 'Login/login.html')

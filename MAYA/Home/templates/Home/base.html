@@ -30,7 +30,7 @@
                 </div>
                 <div class="display">
                     <ul>
-                        <a href="#">Clientas</a>
+                        <a class="{% if request.path == '/clientas' %}active{%endif%}" href="{% url 'Clientas'%}">Clientas</a>
                         <a href="#">Pedidos</a>
                         <a href="#">Ficha Técnica</a>
                         <a href="#">Usuarias</a>

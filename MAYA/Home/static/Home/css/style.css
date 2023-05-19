@@ -96,7 +96,7 @@ img{
 }
 
 
-/* Contenedor costado de sidevar*/
+/* Contenedor principal cambiante*/
 
 .cambiante{
 	width: 100vw;
@@ -107,6 +107,8 @@ img{
 .cambiante .carousel{
 	height: 100%;
 	width: 100%;
+	justify-content: center;
+	align-items: center;
 }
 
 
@@ -115,7 +117,7 @@ img{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 50vh;
+	margin-top: 50px;
 
 }
 .clientas .card{
@@ -128,10 +130,57 @@ img{
 	margin:50px;
 	background-color: #c9ac6fab;
 	text-align: center;
+	border-radius: 10px;
 
 }
 .card .btn{
 	width: 100%;
 	background-color:#6d5850ec;
 
+}
+
+/* Registro Clientas*/
+.form_clientas{
+	display: flex;
+	flex-direction: column;
+	background-color:#c9ac6fab;
+	width: 80%;
+	height: 90%;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	border: black solid 2px;
+	border-radius: 2px;
+
+}
+.form_clientas .btn{
+	width: 100%;
+	margin-top: 20px;
+	background: #6d5850ec;
+}
+.form_1{
+	display: flex;
+	width: 100%;
+	height: 200px;
+	margin-top: 20px;
+	padding: 5px;
+}
+.form_1 .rut{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.form_1 .rut p{
+	font-size: 20px;
+	color:black solid;
+	text-align: center;
+}
+.form_1 div{
+	width: 80%;
+	padding-left: 5px;
+}
+input[type=checkbox] {
+	transform: scale(2.5);
+	margin-top: 15px;
 }

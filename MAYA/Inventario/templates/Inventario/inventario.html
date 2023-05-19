@@ -3,5 +3,19 @@
     {% load static %}
 
     {% block content %}
-    
+
+    <div class="clientas">
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'Home/img/inventario.png' %}" class="card-img-top" alt="...">
+            <a href="#" class="btn">Control de Inventario</a>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'Home/img/proveedor.png' %}" class="card-img-top" alt="...">
+            <a href="#" class="btn">Proveedores</a>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'Home/img/item.png' %}" class="card-img-top" alt="...">
+            <a href="#" class="btn">Items</a>
+        </div>
+    </div>
     {% endblock %}
