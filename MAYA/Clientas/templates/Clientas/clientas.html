@@ -1,0 +1,21 @@
+{% extends 'Home/base.html' %}
+
+    {% load static %}
+
+{% block content %}
+
+    <div class="clientas">
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'Home/img/lista.png' %}" class="card-img-top" alt="...">
+
+            <a class="btn" href="{% url 'listar'%}">Listado de clientas</a>
+
+        </div>
+        
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'Home/img/registro.png' %}" class="card-img-top" alt="...">
+            <a href="{% url 'registro'%}" class="btn">Registrar clientas</a>
+        </div>
+
+    </div>
+{% endblock %}

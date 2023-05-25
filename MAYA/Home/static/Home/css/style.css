@@ -1,0 +1,186 @@
+/*Configuracion base*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*Imagen de fondo*/
+
+#principal{
+	background: linear-gradient(rgba(253, 253, 253, 0.25), rgba(255, 255, 255, 0.25)), 
+	url(../img/fondo2.1.png) no-repeat center center fixed;
+    background-size: cover;
+}
+/*logo estatico superior izquierdo*/
+.con_nav{
+    /* background-color: #dbd8a2; */
+	max-height: 100px;
+	overflow: hidden;
+	margin-bottom: 30px;
+    
+}
+.imagen{
+	float: left;
+    max-width: 300px;
+    max-height: 100px;
+}
+img{
+	object-fit: contain;
+	height: 100%;
+	width: 100%;
+}
+
+/* Boton de perfil */
+
+
+/* Contenedor Central*/
+
+.centro{
+	display:flex;
+
+}
+
+/* Barra lateral */
+.sidenav {
+	position:fixed;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	height: 600px;
+	width: 300px;
+	position: relative;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color:#6d5850ec;
+	overflow-x: hidden;                
+}
+.perfil{
+	align-items: center;
+	justify-content: center;
+
+}
+.intperfil{
+	color: #6d5850ec;
+	background-color:#dbd8a2;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	height: 50%;
+	border-radius: 50%;
+	border: none;
+	margin-top: 10px;
+	font-size: 15px;
+
+}
+.sidenav a {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 0px;
+	text-decoration: none;
+	font-size: 15px;
+	color: #c9ac6f;
+	display: block;
+	text-align: center;
+
+}
+.sidenav a:hover {
+	background-color: #ffffff;border-radius: 10PX;
+}
+.display {
+	display:inline-block;
+	width: auto;
+	margin-top: 10%;
+	margin-right: 10%;
+}
+
+
+/* Contenedor principal cambiante*/
+
+.cambiante{
+	width: 100vw;
+	margin-left: 20px;
+	max-height: 650px;
+}
+/* Pagina Home */
+.cambiante .carousel{
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/* Pagina Clientas */
+.clientas{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+
+}
+.clientas .card{
+	width: 400px;
+	height: 400px;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	padding:50px;
+	margin:50px;
+	background-color: #c9ac6fab;
+	text-align: center;
+	border-radius: 10px;
+
+}
+.card .btn{
+	width: 100%;
+	background-color:#6d5850ec;
+
+}
+
+/* Registro Clientas*/
+.form_clientas{
+	display: flex;
+	flex-direction: column;
+	background-color:#c9ac6fab;
+	width: 80%;
+	height: 90%;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	border: black solid 2px;
+	border-radius: 2px;
+
+}
+.form_clientas .btn{
+	width: 100%;
+	margin-top: 20px;
+	background: #6d5850ec;
+}
+.form_1{
+	display: flex;
+	width: 100%;
+	height: 200px;
+	margin-top: 20px;
+	padding: 5px;
+}
+.form_1 .rut{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.form_1 .rut p{
+	font-size: 20px;
+	color:black solid;
+	text-align: center;
+}
+.form_1 div{
+	width: 80%;
+	padding-left: 5px;
+}
+input[type=checkbox] {
+	transform: scale(2.5);
+	margin-top: 15px;
+}
