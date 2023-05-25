@@ -1,0 +1,39 @@
+{% extends 'Home/base.html' %}
+
+    {% load static %}
+
+{% block content %}
+    <table id="listar_" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Rut</th>
+                <th>Tipo Clienta</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nombre Fantasia</th>
+                
+            </tr>
+        </thead>
+            
+            <tbody>
+                {% for clienta in clientas %}
+                    <tr>
+                        <th scope="row">{{clienta.cod_clienta}}</th>
+                        <td>{{clienta.rut_clienta}}-{{clienta.dv_clienta}}</td>
+                        <td>{{clienta.tipo_clienta}}</td>
+                        <td>{{clienta.nombre}}</td>
+                        <td>{{clienta.apellido}}</td>
+                        <td>{{clienta.nom_fantasia}}</td>
+                        <td>{{clienta.rep_legal_cod_rep_legal}}</td>
+                        <td>{{clienta.correo}}</td>
+                        <
+                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/modificar.png'%}"></button></td>
+                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/eliminar.png'%}"></button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            
+    </table>
+
+{% endblock %}

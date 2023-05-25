@@ -36,6 +36,7 @@ def registro_clientas(request):
                "paises": paises}
 
 
+
     if request.method == 'POST':
         form = form(request.POST)
         registro = {

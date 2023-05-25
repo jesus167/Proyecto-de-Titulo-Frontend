@@ -33,7 +33,7 @@
                         <a class="{% if request.path == '/clientas' %}active{%endif%}" href="{% url 'Clientas'%}">Clientas</a>
                         <a href="#">Pedidos</a>
                         <a href="#">Ficha Técnica</a>
-                        <a href="#">Usuarias</a>
+                        {% comment %} <a class="{% if request.path == '/usuaria' %}active{%endif%}" href="{% url 'usuaria'%}">Usuarias</a> {% endcomment %}
                         <a class="{% if request.path == '/inventario' %}active{%endif%}" href="{% url 'Inventario'%}">Inventario</a>
                         <a href="#">Ventas</a>
                         
@@ -65,6 +65,7 @@
 
     {% comment %} <script type="text/javascript">$('#listar_clientas').DataTable();</script> {% endcomment %}
     <script> let table = new DataTable('#listar_clientas');</script>
+    <script> let table = new DataTable('#listar_usuaria');</script>
 
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->

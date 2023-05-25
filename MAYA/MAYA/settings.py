@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'Login',
     'Home',
     'Inventario',
-    'Clientas'
+    'Clientas',
+    'Usuarias',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
