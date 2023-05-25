@@ -1,0 +1,33 @@
+{% extends 'Home/base.html' %}
+
+    {% load static %}
+
+{% block content %}
+    <table id="listar_usuaria" class="display">
+        <thead>
+            <tr>
+                <th id="usuaria">nombre: </th>
+                <th id="usuaria">Apellido: </th>
+                <th id="usuaria">Correo: </th>
+                <th id="usuaria">Perfil tipo: </th>
+            
+            </tr>
+        </thead>
+            
+            <tbody>
+                {% for usuaria in Usuarias %}
+                    <tr>
+                        <th scope="row">{{usuaria.id_usuaria}}</th>
+                        <td>{{usuaria.nombre}}</td>
+                        <td>{{usuaria.apellido}}</td>
+                        <td>{{usuaria.correo}}</td>
+                        <td>{{usuaria.perfil_cod_perfil}}</td>
+                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/modificar.png'%}"></button></td>
+                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/eliminar.png'%}"></button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            
+    </table>
+
+{% endblock %}
