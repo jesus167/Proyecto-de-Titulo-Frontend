@@ -3,50 +3,54 @@
     {% load static %}
 
 {% block content %}
-    <table class="table table-success table-striped">
+    <table id="listar_clientas" class="display">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Rut</th>
-                <th scope="col">Tipo Clienta</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Nombre Fantasia</th>
-                <th scope="col">Representante Legal</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Número</th>
-                <th scope="col">Complemento</th>
-                <th scope="col">Comuna</th>
-                <th scope="col">Pais</th>
-                <th scope="col">Giro</th>
-                <th scope="col">Modificar</th>
-                <th scope="col">Eliminar</th>
-                
-                </tr>
-            </thead>
+                <th>Id</th>
+                <th>Rut</th>
+                <th>Tipo Clienta</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nombre Fantasia</th>
+                <th>Representante Legal</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Número</th>
+                <th>Complemento</th>
+                <th>Comuna</th>
+                <th>Pais</th>
+                <th>Giro</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+            
             <tbody>
-                <tr>
-                <th scope="row">{{context.cod_clienta}}</th>
-                <td>{{context.rut_clienta}}</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/modificar.png'%}"></button></td>
-                <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/eliminar.png'%}"></button></td>
-                </tr>
+                {% for clienta in clientas %}
+                    <tr>
+                        <th scope="row">{{clienta.cod_clienta}}</th>
+                        <td>{{clienta.rut_clienta}}-{{clienta.dv_clienta}}</td>
+                        <td>{{clienta.tipo_clienta}}</td>
+                        <td>{{clienta.nombre}}</td>
+                        <td>{{clienta.apellido}}</td>
+                        <td>{{clienta.nom_fantasia}}</td>
+                        <td>{{clienta.rep_legal_cod_rep_legal}}</td>
+                        <td>{{clienta.correo}}</td>
+                        <td>{{clienta.tel}}</td>
+                        <td>{{clienta.pais_cod_pais}}</td>
+                        <td>{{clienta.region_cod_pais}}</td>
+                        <td>{{clienta.comuna_cod_comuna}}</td>
+                        <td>{{clienta.calle}}</td>
+                        <td>{{clienta.numero}}</td>
+                        <td>{{clienta.complemento}}</td>
+                        <td>{{clienta.giro}}</td>
+                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/modificar.png'%}"></button></td>
+                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/eliminar.png'%}"></button></td>
+                    </tr>
+                {% endfor %}
             </tbody>
+            
     </table>
 
 {% endblock %}
