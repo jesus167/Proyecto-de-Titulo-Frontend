@@ -26,6 +26,8 @@ def registrar_usuaria(request):
     "correo": request.POST['correo'], 
     "pwd": request.POST['clave'],
     "nombre": request.POST['nombre'], 
+    "apellido": request.POST['apellido'], 
+
     "perfil_cod_perfil": request.POST['perfil']
 }
 
