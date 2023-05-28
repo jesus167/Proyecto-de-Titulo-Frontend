@@ -7,15 +7,11 @@
     <div class="usuaria">
         <div class="card" style="width: 18rem;">
             <img src="{% static 'Home/img/lista.png' %}" class="card-img-top" alt="...">
-
-            <a class="btn" href="{% url 'listar'%}">Lista de usuarias</a>
-
+            <a class="btn" href="{% url 'listarusuaria'%}">Lista de usuarias</a>
         </div>
-        
         <div class="card" style="width: 18rem;">
             <img src="{% static 'Home/img/registro.png' %}" class="card-img-top" alt="...">
-            <a href="{% url 'registro'%}" class="btn">Registrar usuarias</a>
+            <a href="{% url 'registrarusuaria'%}" class="btn">Registrar usuarias</a>
         </div>
-
     </div>
 {% endblock %}

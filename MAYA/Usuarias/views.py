@@ -1,53 +1,50 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import requests
-# Create your views here.
+from .forms import RegistrarUsuariaForm
+from django.contrib import messages
 
 url_usuaria = "http://127.0.0.1:8000/api/usuaria/"
-url_perfil= "http://127.0.0.1:8000/api/perfil/"
+url_perfil = "http://127.0.0.1:8000/api/perfil/"
 perfiles = {}
 
 def usuaria(request):
-    return render(request, 'usuaria/usuaria.html')
+    return render(request, 'usuaria.html')
 
-def registrar_usuaria(request):
-
-    respuesta = requests.get('http://127.0.0.1:8000/api/perfil/')
+def registrarusuaria(request):
+    global perfiles
+    
+    respuesta = requests.get(url_perfil)
     if respuesta.status_code == 200:
         perfil = respuesta.json()
         perfiles = {p["cod_perfil"]: p["perfil"] for p in perfil}
     else:
         print('Error en la búsqueda')
 
+    form = RegistrarUsuariaForm(request.POST)
+    if form.is_valid():
+        u_registro = form.cleaned_data
+        u_registro["nombre_perfil"] = perfiles.get(u_registro["perfil_cod_perfil"], "")
+        
+        response = requests.post(url_usuaria, u_registro)
+        if response.status_code == 200:
+            usuaria_creada = response.json()
+            usuaria_creada["nombre_perfil"] = perfiles.get(usuaria_creada["perfil_cod_perfil"], "")
+            return redirect('listarusuaria')  # Redirigir a la página de listar usuarias
+        else:
+            messages.error(request, 'Error al registrar usuaria')  # Mensaje de error
+    else:
+        form = RegistrarUsuariaForm()
 
-    if request.method == 'POST':
-        form = form(request.POST)
-        u_registro = {
-    "id_usuaria": request.POST['id'],
-    "correo": request.POST['correo'], 
-    "pwd": request.POST['clave'],
-    "nombre": request.POST['nombre'], 
-    "apellido": request.POST['apellido'], 
+    return render(request, 'registrarusuaria.html', {'form': form})
 
-    "perfil_cod_perfil": request.POST['perfil']
-}
-
-# Asignar el nombre del perfil al diccionario de registro
-    u_registro["nombre_perfil"] = perfiles.get(u_registro["perfil_cod_perfil"], "")
-
-    response  = requests.post(url_usuaria, u_registro)
+def listarusuaria(request):
+    response = requests.get(url_usuaria)
     if response.status_code == 200:
-            print('Usuaria registrada')
+        usuarias = response.json()
+        for usuaria in usuarias:
+            usuaria["nombre_perfil"] = perfiles.get(usuaria["perfil_cod_perfil"], "")
+    else:
+        usuarias = []
 
-
-    return render (request, 'usuaria/registrar_usuaria.html', )
-
-def listar_usuaria(request):
-    data = requests.get(url_usuaria)
-    if data.status_code == 200:
-        usuarias = data.json()
-    for usuaria in usuarias:
-        usuaria["nombre_perfil"] = perfiles.get(usuaria["perfil_cod_perfil"], "")
     context = {'usuarias': usuarias}
-    return render (request, 'usuaria/listar_usuaria.html', context)
-
-
+    return render(request, 'listarusuaria.html', context)

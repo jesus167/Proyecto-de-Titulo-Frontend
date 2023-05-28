@@ -42,13 +42,12 @@ img{
 
 /* Barra lateral */
 .sidenav {
-	position:fixed;
+	position:fixed, relative;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
 	height: 600px;
 	width: 300px;
-	position: relative;
 	z-index: 1;
 	top: 0;
 	left: 0;
@@ -184,3 +183,4 @@ input[type=checkbox] {
 	transform: scale(2.5);
 	margin-top: 15px;
 }
+
