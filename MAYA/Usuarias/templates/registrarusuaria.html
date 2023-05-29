@@ -10,7 +10,7 @@
             <h1>Registro de Usuarias</h1>
         </div>
         {% csrf_token %}
-        <div class="RegistrarUsuariaForm">
+        <div class="form_clientas">
             <div>
                 <label for="correo">Correo</label>
                 <br>
@@ -40,8 +40,10 @@
                     <option value="3">Asistenta de cocina</option>
                     <option value="4">Encargada de logística</option>
                 </select>    
+                <br>
+                <button class="btn btn-dark">Guardar contacto</button>
             </div>
         </div>
-        <button class="btn btn-dark">Guardar contacto</button>
+
     </form>
 {% endblock %}
