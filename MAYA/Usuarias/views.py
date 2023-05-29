@@ -8,12 +8,14 @@ url_perfil = "http://127.0.0.1:8000/api/perfil/"
 perfiles = {}
 
 def usuaria(request):
-    return render(request, 'usuaria.html')
+    return render(request, 'http://127.0.0.1:8000/api/usuaria/')
+
+
 
 def registrarusuaria(request):
     global perfiles
     
-    respuesta = requests.get(url_perfil)
+    respuesta = requests.get('http://127.0.0.1:8000/api/perfil/')
     if respuesta.status_code == 200:
         perfil = respuesta.json()
         perfiles = {p["cod_perfil"]: p["perfil"] for p in perfil}
