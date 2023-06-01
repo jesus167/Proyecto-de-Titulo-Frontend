@@ -1,0 +1,54 @@
+<!-- The Modal -->
+<div class="modal" id="crearProveedora">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Agregar proveedora</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+            <div class="modal-body">
+
+                <div class="modal-body">
+                    <form method="post" action="{% url 'crearProveedora' %}">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                        <input type="text" name="nom_proveedora" class="form-control" maxlength="100" required placeholder="Nombre empresa">
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="nom_contacto" class="form-control" maxlength="50" required placeholder="Nombre contacto">
+                      </div>
+                      <div class="mb-3">
+                        <input type="email" name="correo" class="form-control" maxlength="100" required placeholder="Correo contacto">
+                      </div>
+                      <div class="mb-3">
+                        <input type="tel" name="tel" class="form-control" required placeholder="Teléfono contacto">
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="calle" class="form-control" maxlength="100" required placeholder="Calle (dirección)">
+                      </div>
+                      <div class="mb-3">
+                        <input type="number" name="numero" class="form-control" required placeholder="Número (dirección)">
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="complemento" class="form-control" maxlength="10" placeholder="Complemento (dirección)">
+                      </div>
+                      <div class="modal-footer" style="margin-top: 40px;">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                      </div>
+                    </form>
+                  </div>
+                
+              </div>
+              
+        </div>
+
+    </div>
+    </div>
+</div>

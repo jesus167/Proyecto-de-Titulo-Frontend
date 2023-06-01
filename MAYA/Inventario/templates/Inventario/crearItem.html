@@ -1,0 +1,71 @@
+<!-- The Modal -->
+<div class="modal" id="crearItem">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Agregar ítem</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+            <div class="modal-body">
+
+                <div class="modal-body">
+                    <form method="post" action="{% url 'crearItem' %}">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                        <input type="text" name="nom_item" class="form-control" maxlength="100" required placeholder="Nombre ítem">
+                      </div>
+                      <div class="form-group mb-3">
+                        <select name="categoria" class="form-control" required data-reset="true">
+                          <option selected disabled>Seleccionar categoría</option>
+                          <option value="1">Insumo alimento</option>
+                          <option value="2">Insumo descartable</option>
+                          <option value="3">Implemento</option>
+                        </select>
+                      </div>
+                      <div class="form-group mb-3">
+                        <select name="unidad_cod_unidad" class="form-control" required data-reset="true">
+                          <option selected disabled>Seleccionar unidad de medida</option>
+                          <option value="1">kg</option>
+                          <option value="2">g</option>
+                          <option value="3">lt</option>
+                          <option value="4">ml</option>
+                          <option value="5">unidades</option>
+                          <option value="6">cda.</option>
+                          <option value="7">cdta.</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <input type="number" name="cant_item" class="form-control" required placeholder="Cantidad">
+                      </div>
+                      <div class="mb-3">
+                        <input type="number" name="costo_std" class="form-control" maxlength="100" required placeholder="Costo estándar">
+                      </div>
+                      <div class="modal-footer" style="margin-top: 40px;">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                      </div>
+                    </form>
+                  </div>
+                
+              </div>  
+        </div>
+    </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function resetCategoria() {
+      $('[data-reset="true"]').prop('selectedIndex', 0);
+    }
+    $('#crearItem').on('show.bs.modal', function (e) {
+      resetCategoria();
+    });
+</script>
+  

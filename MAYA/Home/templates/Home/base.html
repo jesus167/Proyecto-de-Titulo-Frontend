@@ -6,11 +6,12 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- Bootstrap CSS -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"/>3
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Custom Css-->
         <link rel="stylesheet" href="{% static 'Home/css/style.css' %}" />
         <link rel="icon" href="{% static 'Home/img/tracker.png' %}" />
         <title>MAYA</title>
@@ -26,23 +27,27 @@
             <div class="sidenav">
                 <div class="perfil">
                     <img class="intperfil" src="{% static 'Home/img/mujer.png' %}"/>
-                    <a href="#">Mi perfil</a>
+                    
+                    {% for u in usuarias %}
+                        <a href="#">{{u.nombre}} {{u.apellido}}</a>
+                    {% endfor %}
+                    
                 </div>
                 <div class="display">
                     <ul>
                         <a class="{% if request.path == '/clientas' %}active{%endif%}" href="{% url 'Clientas'%}">Clientas</a>
                         <a href="#">Pedidos</a>
                         <a href="#">Ficha Técnica</a>
-                        <a href="#">Usuarias</a>
+                        <a class="{% if request.path == '/usuarias' %}active{%endif%}" href="{% url 'Usuarias'%}">Usuarias</a>
                         <a class="{% if request.path == '/inventario' %}active{%endif%}" href="{% url 'Inventario'%}">Inventario</a>
                         <a href="#">Ventas</a>
                         
 
                     </br>
                     </br>
-
-                        <a href="#">Recuperar contraseña</a>
-                        <a href="#">Cerrar Sesión</a>
+                        
+                        <a href="{% url 'recuperar_pwd' %}">Cambiar contraseña</a>
+                        <a href="{% url 'Cerrar_sesion' %}" >Cerrar Sesión</a>
                     </ul>
                 </div>
             </div>
@@ -53,24 +58,13 @@
             </div>
         </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+<!-- Bootstrap-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- JQuery-->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<!-- Custom Js-->
 
-
-
-    {% comment %} <script type="text/javascript">$('#listar_clientas').DataTable();</script> {% endcomment %}
-    <script> let table = new DataTable('#listar_clientas');</script>
-
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
     </body>
+
 </html>

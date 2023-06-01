@@ -1,0 +1,49 @@
+<!-- Modal -->
+<div class="modal fade" id="otrosDatos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+            <div>
+                <h2>Otros Datos</h2>
+            </div>
+            <div>
+              {% for c in clienta  %}
+                <ul>
+                    <li>Dirección: {{c.calle}}</li>
+                    <li>Número: {{c.numero}}</li>
+                    <li>Complemento: {{c.complemento}}</li>
+                    <li>Comuna: {{c.comuna_cod_comuna}}</li>
+                    <li>Región: {{c.calle}}</li>
+                    <li>País: {{c.pais_cod_pais}}</li>
+                    <li>Giro: {{c.giro}}</li>
+                </ul>
+              {% endfor %}
+            </div>
+        </div>
+        <div>
+            <div>
+                <h2>Representante Legal</h2>
+            </div>
+            <div>
+                <ul>
+                    <li>Rut: </li>
+                    <li>Nombre: </li>
+                    <li>Apellido: </li>
+                    <li>Correo: </li>
+                    <li>Teléfono: </li>
+                </ul>
+            </div>
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

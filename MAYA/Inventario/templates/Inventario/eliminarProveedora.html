@@ -1,0 +1,27 @@
+<!-- The Modal -->
+<div class="modal" id="myModal{{p.cod_proveedora}}">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Eliminar proveedora</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+        ¿Segura de que deseas eliminar una proveedora?
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <a href="/eliminarProveedora/{{p.cod_proveedora}}">
+            <button type="button" class="btn btn-success">Eliminar</button>
+        </a>
+        </div>
+
+    </div>
+    </div>
+</div>

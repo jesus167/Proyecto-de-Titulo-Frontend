@@ -1,0 +1,118 @@
+{% extends "Home/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row row-cols-3">
+    <div class="col mb-4">
+        <div class="container-fluid" style="margin-top: 50px;">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="container-fluid">
+                        <h2>Agregar artículo</h2>
+                        <form method="post" action="{% url 'crearArticulo' %}" style="margin-top: 20px;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                              <input type="text" name="nom_art" class="form-control" maxlength="100" required placeholder="Nombre artículo" style="width: 350px;">
+                            </div>
+                            <div class="form-group mb-3" style="max-height: 200px;">
+                              <select name="item_cod_item" class="form-control" required data-reset="true" style="width: 350px;">
+                                <option selected disabled>Seleccionar ítem relacionado</option>
+                                {% for i in item %}
+                                    <option value="{{i.cod_item}}">{{i.nom_item}}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            <div class="form-group mb-3">
+                              <select name="proveedora_cod_proveedora" class="form-control" required data-reset="true" style="width: 350px;">
+                                <option selected disabled>Seleccionar proveedora</option>
+                                {% for p in proveedora %}
+                                    <option value="{{p.cod_proveedora}}">{{p.nom_proveedora}}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+            
+                            <div class="modal-footer" style="margin-top: 40px; width: 350px;">
+                                <a href="{% url 'articulo' %}" class="btn btn-danger">Cancelar</a>
+                                <button type="submit" class="btn btn-success">Agregar</button>
+                            </div>
+                          </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col mb-4">
+        <div class="container-fluid" style="margin-top: 50px;">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="container-fluid">
+                        <h2>Registrar entrada</h2>
+                        <div>
+                            <form method="post" action="{% url 'registrarEntrada' %}" style="margin-top: 20px;">
+                                {% csrf_token %}
+                                <div class="form-group mb-3" style="max-height: 200px;">
+                                  <select name="inventario_cod_art" class="form-control" required data-reset="true" style="width: 350px;">
+                                    <option selected disabled>Seleccionar artículo</option>
+                                    {% for a in articulo %}
+                                        <option value="{{a.cod_art}}">{{a.nom_art}}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" name="cantidad" class="form-control" required placeholder="Cantidad" style="width: 350px;">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" name="costo_unit" class="form-control" required placeholder="Costo unitario" style="width: 350px;">
+                                </div>                                
+                                <div class="mb-3">
+                                    <input type="text" name="descripcion" class="form-control" required placeholder="Descripcion" style="width: 350px;">
+                                </div>                     
+                                <div class="modal-footer" style="margin-top: 40px; width: 350px;">
+                                    <a href="{% url 'articulo' %}" class="btn btn-danger">Cancelar</a>
+                                    <button type="submit" class="btn btn-success">Registrar</button>
+                                </div>
+                              </form>  
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col mb-4">
+        <div class="container-fluid" style="margin-top: 50px;">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="container-fluid">
+                        <h2>Registrar salida</h2>
+                        <form method="post" action="{% url 'registrarSalida' %}" style="margin-top: 20px;">
+                            {% csrf_token %}
+                            <div class="form-group mb-3" style="max-height: 200px;">
+                              <select name="inventario_cod_art" class="form-control" required data-reset="true" style="width: 350px;">
+                                <option selected disabled>Seleccionar artículo</option>
+                                {% for a in articulo %}
+                                    <option value="{{a.cod_art}}">{{a.nom_art}}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            <div class="mb-3">
+                                <input type="number" name="cantidad" class="form-control" required placeholder="Cantidad" style="width: 350px;">
+                            </div>                             
+                            <div class="mb-3">
+                                <input type="text" name="descripcion" class="form-control" required placeholder="Descripcion" style="width: 350px;">
+                            </div>                     
+                            <div class="modal-footer" style="margin-top: 40px; width: 350px;">
+                                <a href="{% url 'articulo' %}" class="btn btn-danger">Cancelar</a>
+                                <button type="submit" class="btn btn-success">Registrar</button>
+                            </div>
+                          </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

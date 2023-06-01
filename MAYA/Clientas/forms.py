@@ -1,12 +1,23 @@
 from django import forms
-from .models import *
 
 
 
-class RegistroClientas(forms.ModelForm):
-    
-    class Meta:
-        model = Clienta
-        fields = '__all__'
-        # fields = ['Rut', 'DV', 'Tipo Clienta', 'Nombre', 'Apellido', 'Nombre Fantasia', 'Representante legal', 'Correo', 'Teléfono',
-        #           'Calle', 'Número', 'Complemento', 'Comuna', 'Pais', 'Giro']
+
+class RegistroClientas(forms.Form):
+
+    rut_clienta = forms.IntegerField()
+    dv_clienta = forms.CharField(max_length=1)
+    tipo_clienta = forms.IntegerField()
+    nombre = forms.CharField(max_length=100)
+    apellido = forms.CharField(max_length=100)
+    nom_fantasia = forms.CharField(max_length=100)
+    rep_legal_cod_rep_legal = forms.BooleanField()
+    correo = forms.EmailField(max_length=100)
+    tel = forms.IntegerField()
+    pais_cod_pais = forms.CharField()
+    comuna_cod_comuna = forms.CharField()
+    calle = forms.CharField(max_length=200)
+    numero = forms.IntegerField()
+    complemento = forms.CharField(max_length=10)
+    giro = forms.CharField(max_length=200)
+

@@ -1,0 +1,50 @@
+<!-- The Modal -->
+<div class="modal" id="editarProveedora{{p.cod_proveedora}}">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Editar proveedora</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+
+        <div class="modal-body">
+
+            <form method="post" action="{% url 'editarProveedora' %}">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{p.cod_proveedora}}">
+                <div class="mb-3">
+                  <input type="text" name="nom_proveedora" class="form-control" maxlength="100" placeholder="{{ p.nom_proveedora }}">
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="nom_contacto" class="form-control" maxlength="50" placeholder="{{ p.nom_contacto }}">
+                </div>
+                <div class="mb-3">
+                  <input type="email" name="correo" class="form-control" maxlength="100" placeholder="{{ p.correo }}">
+                </div>
+                <div class="mb-3">
+                  <input type="tel" name="tel" class="form-control" placeholder="{{ p.tel }}">
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="calle" class="form-control" maxlength="100" placeholder="{{ p.calle }}">
+                </div>
+                <div class="mb-3">
+                  <input type="number" name="numero" class="form-control" placeholder="{{ p.numero }}">
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="complemento" class="form-control" maxlength="10" placeholder="{{ p.complemento }}">
+                </div>
+                <div class="modal-footer" style="margin-top: 40px;">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Guardar cambios</button>
+                </div>
+              </form>
+
+          </div>
+
+    </div>
+    </div>
+</div>

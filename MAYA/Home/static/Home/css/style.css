@@ -111,7 +111,6 @@ img{
 	align-items: center;
 }
 
-
 /* Pagina Clientas */
 .clientas{
 	display: flex;
@@ -139,12 +138,18 @@ img{
 
 }
 
+/* Lista de Clientas*/
+.centered{
+	text-align: center !important;
+	vertical-align: middle !important;
+}
+
 /* Registro Clientas*/
 .form_clientas{
 	display: flex;
 	flex-direction: column;
 	background-color:#c9ac6fab;
-	width: 80%;
+	width: 100%;
 	height: 90%;
 	align-items: center;
 	justify-content: center;

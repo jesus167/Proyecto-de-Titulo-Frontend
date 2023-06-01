@@ -1,4 +1,4 @@
-import requests , json
+import requests
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
@@ -6,7 +6,8 @@ from django.contrib import messages
 from .forms import LoginForm
 
 
-url = "http://127.0.0.1:8000/api/login/"
+url_login = "http://127.0.0.1:8000/api/login/"
+
 
 # Create your views here.
 
@@ -50,16 +51,15 @@ def login(request):
                         'pwd': password,
                         'canal': canal
                     }
-            data =  requests.post(url, json = user)
+            data = requests.post(url_login, json = user)
             if data.status_code == 200:
                 print(data)
                 print('logueado')
-                return redirect
-
-
+                return redirect('Home')
             else:
                 print(data.status_code)
                 print('no logueado')
                 return render(request, 'Login/login.html')
 
     return render(request, 'Login/login.html')
+

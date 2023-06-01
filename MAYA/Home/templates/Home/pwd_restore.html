@@ -1,0 +1,40 @@
+{% extends 'Home/base.html' %}
+
+    {% load static %}
+
+{% block content %}
+
+
+<div class="modal-dialog modal-lg" id="recuperar_pwd" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Cambiar contraseña</h2>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+    
+                <div>
+                    <label class="form-control" >Ingresa tu correo</label>
+                    <input type="text" class="form-control" name="correo" placeholder="juan.tapia@gmail.com">
+                </div>
+                <div>
+                    <label class="form-control" >Ingresa tu nueva contraseña</label>
+                    <input type="password" class="form-control" name="new_pass">
+                </div>
+                <div>
+                    <label class="form-control" >Ingresa tu contraseña actual</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit">Confirmar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,52 @@
+<!-- The Modal -->
+<div class="modal" id="editarItem{{i.cod_item}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Editar ítem</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form method="post" action="{% url 'editarItem' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ i.cod_item }}">
+                        <div class="mb-3">
+                            <input type="text" name="nom_item" class="form-control" maxlength="100" required placeholder="Nombre ítem" value="{{ i.nom_item }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <select name="categoria" class="form-control" required data-reset="true">
+                                <option selected disabled>Seleccionar categoría</option>
+                                <option value="1" {% if i.categoria == 1 %}selected{% endif %}>Insumo alimento</option>
+                                <option value="2" {% if i.categoria == 2 %}selected{% endif %}>Insumo descartable</option>
+                                <option value="3" {% if i.categoria == 3 %}selected{% endif %}>Implemento</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <select name="unidad_cod_unidad" class="form-control" required data-reset="true">
+                                <option selected disabled>Seleccionar unidad de medida</option>
+                                <option value="1" {% if i.unidad_cod_unidad == 1 %}selected{% endif %}>kg</option>
+                                <option value="2" {% if i.unidad_cod_unidad == 2 %}selected{% endif %}>g</option>
+                                <option value="3" {% if i.unidad_cod_unidad == 3 %}selected{% endif %}>lt</option>
+                                <option value="4" {% if i.unidad_cod_unidad == 4 %}selected{% endif %}>ml</option>
+                                <option value="5" {% if i.unidad_cod_unidad == 5 %}selected{% endif %}>unidades</option>
+                                <option value="6" {% if i.unidad_cod_unidad == 6 %}selected{% endif %}>cda.</option>
+                                <option value="7" {% if i.unidad_cod_unidad == 7 %}selected{% endif %}>cdta.</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" name="cant_item" class="form-control" required placeholder="Cantidad" value="{{ i.cant_item }}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" name="costo_std" class="form-control" maxlength="100" required placeholder="Costo estándar" value="{{ i.costo_std }}">
+                        </div>
+                        <div class="modal-footer" style="margin-top: 40px;">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div

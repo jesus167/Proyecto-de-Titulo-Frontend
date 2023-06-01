@@ -1,0 +1,57 @@
+{% extends "Home/base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="container-fluid">
+    <div>
+        <h1 class="w-100" style="text-align: center; margin-top: 40px;">Listado de ítems</h1>
+    </div>
+</section>
+
+<section class="container-fluid" style="padding-left: 80px; padding-right: 80px; padding-top: 40px;">
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Cód. ítem</th>
+                <th scope="col">Nombre ítem</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Unidad</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Costo estándar</th>
+                <th scope="col">
+                    <button type="button" class="btn btn-success btn1" data-bs-toggle="modal" data-bs-target="#crearItem"><i class="fa-solid fa-square-plus"></i></button>
+                    {% include "crearItem.html" %}
+                </th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for i in item %}
+                <tr>
+                    <th scope="row">{{i.cod_item}}</th>
+                    <td>{{i.nom_item}}</td>
+                    {% if i.categoria == '1' %} <td>INSUMO ALIMENTO</td>
+                    {% elif i.categoria == '2' %} <td>INSUMO DESCARTABLE</td>
+                    {% elif i.categoria == '3' %} <td>IMPLEMENTO</td>
+                    {% else %} <td>(Sin categoría)</td>
+                    {% endif %}
+                    <td>{{i.unidad_cod_unidad}}</td>
+                    <td>{{i.cant_item}}</td>
+                    <td>$ {{i.costo_std}}</td>
+                    <td>
+                        <button type="button" class="btn btn-success btn4" data-bs-toggle="modal" data-bs-target="#eliminarItem{{i.cod_item}}"><i class="fa-solid fa-trash-can"></i></button>
+                        {% include "eliminarItem.html" %}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success btn3" data-bs-toggle="modal" data-bs-target="#editarItem{{i.cod_item}}"><i class="fa-solid fa-pen-to-square"></i></button>
+                        {% include "editarItem.html" %}
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

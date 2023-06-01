@@ -36,8 +36,8 @@
                     <br>
                     <select class="form-select" name="tipo_clienta"aria-label="Default select example">
                         <option selected>Seleccione opción</option>
-                        <option value="1">01</option>
-                        <option value="2">02</option>
+                        <option value="1">Persona Natural</option>
+                        <option value="2">Persona Jurídica</option>
                     </select>    
                 </div>
             </div>
@@ -47,11 +47,6 @@
                     <label for="nombre_fantasia">Nombre de Fantasia</label>
                     <br>
                     <input type="text" name="nombre_fantasia" class="form-control" style="width: 300px;">
-                </div>
-                <div>
-                    <label for="representante">Representante Legal</label>
-                    <br>
-                    <input type="checkbox" class="form-check-label w-50 " name="representante" >
                 </div>
                 <div>
                     <label for="email">Correo</label>
@@ -68,9 +63,9 @@
             <div class="form_1">
                 <div>
                     <label for="exampleDataList" class="form-label">País</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="pais">
                         {% for p in paises %}
-                            <option value="{{ p.cod_pais }}">{{ p.pais }}</option>
+                            <option selected value="{{ p.cod_pais }}">{{ p.pais }}</option>
                         {% endfor %}
                     </select>
                     
@@ -85,7 +80,7 @@
                 </div>
                 <div>
                     <label for="exampleDataList" class="form-label">Comuna</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="comuna">
                         {% for c in comunas %}
                         <option selected value="{{ clienta.cod_comuna }}"> {{ c.comuna }}</option>
                         {% endfor %}
@@ -115,7 +110,7 @@
                     <input type="text" name="giro"  class="form-control" style="width: 100px;">
                 </div>
             </div>
-            <button class="btn btn-dark">Guardar contacto</button>
+            <button type="submit" class="btn btn-dark">Guardar contacto</button>
         </form>
 
     {% endblock %}

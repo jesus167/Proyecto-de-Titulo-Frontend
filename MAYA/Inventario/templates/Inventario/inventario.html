@@ -7,15 +7,15 @@
     <div class="clientas">
         <div class="card" style="width: 18rem;">
             <img src="{% static 'Home/img/inventario.png' %}" class="card-img-top" alt="...">
-            <a href="#" class="btn">Control de Inventario</a>
+            <a href="{% url 'articulo' %}" class="btn">Control de Artículos</a>
         </div>
         <div class="card" style="width: 18rem;">
             <img src="{% static 'Home/img/proveedor.png' %}" class="card-img-top" alt="...">
-            <a href="#" class="btn">Proveedores</a>
+            <a href="{% url 'proveedora' %}" class="btn">Control Proveedoras</a>
         </div>
         <div class="card" style="width: 18rem;">
             <img src="{% static 'Home/img/item.png' %}" class="card-img-top" alt="...">
-            <a href="#" class="btn">Items</a>
+            <a href="{% url 'item' %}" class="btn">Control de Items</a>
         </div>
     </div>
     {% endblock %}

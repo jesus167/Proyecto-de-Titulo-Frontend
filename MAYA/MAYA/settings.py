@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     'Login',
     'Home',
     'Inventario',
-    'Clientas'
+    'Clientas',
+    'Usuarias',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -89,8 +91,8 @@ DATABASES = {
     }
 }
 
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = ""
+LOGIN_REDIRECT_URL = reverse_lazy('Home')
+LOGOUT_REDIRECT_URL = reverse_lazy('Login')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-la'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 

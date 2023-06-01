@@ -1,0 +1,60 @@
+{% extends "Home/base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="container-fluid">
+    <div>
+        <h1 class="w-100" style="text-align: center; margin-top: 40px;">Proveedoras</h1>
+    </div>
+</section>
+
+<section class="container-fluid" style="padding-left: 80px; padding-right: 80px; padding-top: 40px;">
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Cód. proveedora</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Comuna</th>
+                <th scope="col">País</th>
+                <th scope="col">
+                    <button type="button" class="btn btn-success btn1" data-bs-toggle="modal" data-bs-target="#crearProveedora"><i class="fa-solid fa-square-plus"></i></button>
+                    {% include "Inventario/crearProveedora.html" %}
+                </th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for p in proveedora %}
+                <tr>
+                    <th scope="row">{{p.cod_proveedora}}</th>
+                    <td>{{p.nom_proveedora}}</td>
+                    <td>{{p.nom_contacto}}</td>
+                    <td>{{p.correo}}</td>
+                    <td>{{p.tel}}</td>
+                    <td>{{p.calle}} {{p.numero}} {{p.complemento}}</td>
+                    <td>{{p.comuna_cod_comuna}}</td>
+                    <td>{{p.pais_cod_pais}}</td>
+                    <td>
+                        <button type="button" class="btn btn-success btn4" data-bs-toggle="modal" data-bs-target="#myModal{{p.cod_proveedora}}"><i class="fa-solid fa-trash-can"></i></button>
+                        {% include "Inventario/eliminarProveedora.html" %}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success btn3" data-bs-toggle="modal" data-bs-target="#editarProveedora{{p.cod_proveedora}}"><i class="fa-solid fa-pen-to-square"></i></button>
+                        {% include "Inventario/editarProveedora.html" %}
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+
+{% endblock %}

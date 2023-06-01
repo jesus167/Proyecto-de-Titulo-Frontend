@@ -1,0 +1,67 @@
+{% extends "Home/base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="container-fluid">
+    <div>
+        <h1 class="w-100" style="text-align: center; margin-top: 40px;">Inventario de artículos</h1>
+    </div>
+</section>
+
+<section class="container-fluid" style="padding-left: 80px; padding-right: 80px; padding-top: 40px;">
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Cód. artículo</th>
+                <th scope="col">Nombre artículo</th>
+                <th scope="col">Costo unitario</th>
+                <th scope="col">Proveedora</th>
+                <!-- <th scope="col">Categoría</th> -->
+                <th scope="col">Total entradas</th>
+                <th scope="col">Total salidas</th>
+                <th scope="col">Stock</th>
+                <th scope="col">
+                    <a href="{% url 'crearArticulo' %}">
+                      <button type="button" class="btn btn-success btn1"><i class="fa-solid fa-square-plus"></i></button>
+                    </a>
+                </th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for a in articulo %}
+                <tr>
+                    <th scope="row">{{a.cod_art}}</th>
+                    <td>{{a.nom_art}}</td>
+                    <td>{{a.costo_art}}</td>
+                    <td>{{a.proveedora_cod_proveedora}}</td>
+                    <!-- <td>{{a.categoria}}</td> -->
+                    <td>{{a.tot_entradas}}</td>
+                    <td>{{a.tot_salidas}}</td>
+                    {% if a.stock < 1 %}
+                    <td style="color: red; font-weight: bold;">{{a.stock}}</td>
+                    {% else %}
+                    <td>{{a.stock}}</td>
+                    {% endif %}
+                    <td>
+                        <button type="button" class="btn btn-success btn4" data-bs-toggle="modal" data-bs-target="#eliminarArticulo{{a.cod_art}}"><i class="fa-solid fa-trash-can"></i></button>
+                        {% include "eliminarArticulo.html" %}
+                    </td>
+                    <td>
+                      <a href="/modificarArticulo/{{p.id}}">
+                        <button type="button" class="btn btn-success btn3"><i class="fa-solid fa-pen-to-square"></i></button>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

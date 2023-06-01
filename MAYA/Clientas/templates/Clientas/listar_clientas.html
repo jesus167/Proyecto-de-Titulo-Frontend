@@ -3,54 +3,78 @@
     {% load static %}
 
 {% block content %}
-    <table id="listar_clientas" class="display">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Rut</th>
-                <th>Tipo Clienta</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Nombre Fantasia</th>
-                <th>Representante Legal</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Número</th>
-                <th>Complemento</th>
-                <th>Comuna</th>
-                <th>Pais</th>
-                <th>Giro</th>
-                <th>Modificar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-            
-            <tbody>
-                {% for clienta in clientas %}
-                    <tr>
-                        <th scope="row">{{clienta.cod_clienta}}</th>
-                        <td>{{clienta.rut_clienta}}-{{clienta.dv_clienta}}</td>
-                        <td>{{clienta.tipo_clienta}}</td>
-                        <td>{{clienta.nombre}}</td>
-                        <td>{{clienta.apellido}}</td>
-                        <td>{{clienta.nom_fantasia}}</td>
-                        <td>{{clienta.rep_legal_cod_rep_legal}}</td>
-                        <td>{{clienta.correo}}</td>
-                        <td>{{clienta.tel}}</td>
-                        <td>{{clienta.pais_cod_pais}}</td>
-                        <td>{{clienta.region_cod_pais}}</td>
-                        <td>{{clienta.comuna_cod_comuna}}</td>
-                        <td>{{clienta.calle}}</td>
-                        <td>{{clienta.numero}}</td>
-                        <td>{{clienta.complemento}}</td>
-                        <td>{{clienta.giro}}</td>
-                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/modificar.png'%}"></button></td>
-                        <td><button type="button" class="w-25 h-25"><img src="{% static 'Home/img/eliminar.png'%}"></button></td>
-                    </tr>
+
+<section class="container-fluid">
+    <div>
+        <h1 class="w-100" style="text-align: center; margin-top: 40px;">Lista de Clientas</h1>
+    </div>
+</section>
+
+<section class="container-fluid" style=" background-color:#c9ac6fab;">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar Clienta" aria-label="Search">
+                            <button class="btn btn-success" type="submit">Buscar</button>
+                        </form></th>
+                    <th>
+                        <a href="{% url 'registro' %}">
+                            <button type="button" class="btn btn-success"><i class="fa-solid fa-square-plus"></i></button>
+                        </a>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="centered">Rut</th>
+                    <th class="centered">Tipo Clienta</th>
+                    <th class="centered">Nombre</th>
+                    <th class="centered">Apellido</th>
+                    <th class="centered">Nombre Fantasia</th>
+                    <th class="centered">Correo</th>
+                    <th class="centered">Teléfono</th>
+                    <th class="centered">Opciones</th>
+                </tr>
+            </thead>                
+            <tbody class="table-group-divider">
+                {% for c in clienta %}
+                <tr>
+                    <td class="centered" colspan="1">{{c.rut_clienta}}-{{c.dv_clienta}}</td>
+                    {% if c.tipo_clienta == 1 %}
+                        <td class="centered">Natural</td>
+                    {% elif c.tipo_clienta == 2 %}
+                        <td class="centered">Juridica</td>
+                    {% endif %}
+                    <td class="centered">{{c.nombre}}</td>
+                    <td class="centered">{{c.apellido}}</td>
+                    <td class="centered">{{c.nom_fantasia}}</td>
+                    <td class="centered">{{c.correo}}</td>
+                    <td class="centered">{{c.tel}}</td>
+                    <td colspan="1">
+                        <button type="button" name="{{c.cod_clienta}}"class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#otrosDatos"><i class="fa-solid fa-eye"></a></i></button>
+                        {% include 'Clientas/otrosDatos.html' %}
+                    </td>
+                    <td colspan="1">
+                        <button type="button" class="btn btn-success"><i class="fa-solid fa-pen-to-square"><a href="#"></a></i></button>
+                    </td>
+                    <td colspan="1">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarArticulo{{a.cod_art}}"><i class="fa-solid fa-trash-can"><a href="#"></a></i></button>
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
-            
-    </table>
-
+                
+        </table>
+    </div>
+</section>
 {% endblock %}
+
+{% comment %} <th class="centered">Representante Legal</th>
+<th class="centered">Pais</th>
+<th class="centered">Región</th>
+<th class="centered">Comuna</th>
+<th class="centered">Dirección</th>
+<th class="centered">Número</th>
+<th class="centered">Complemento</th>
+<th class="centered">Giro</th>  {% endcomment %}
