@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="otrosDatos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="otrosDatos{{c.cod_clienta}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,7 +12,7 @@
                 <h2>Otros Datos</h2>
             </div>
             <div>
-              {% for c in clienta  %}
+              {% for c.cod_clienta in clienta  %}
                 <ul>
                     <li>Dirección: {{c.calle}}</li>
                     <li>Número: {{c.numero}}</li>

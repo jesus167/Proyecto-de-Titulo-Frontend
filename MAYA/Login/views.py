@@ -53,9 +53,15 @@ def login(request):
                     }
             data = requests.post(url_login, json = user)
             if data.status_code == 200:
-                print(data)
-                print('logueado')
-                return redirect('Home')
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                        print(data)
+                        print('logueado')
+                    return redirect('Home')
+                else:
+                    return redirect('Login')
             else:
                 print(data.status_code)
                 print('no logueado')

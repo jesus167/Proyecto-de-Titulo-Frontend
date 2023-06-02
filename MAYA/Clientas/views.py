@@ -100,6 +100,7 @@ def listar_clientas(request):
     contexto = {"clienta":clienta}
     return render(request, 'Clientas/listar_clientas.html', contexto)
 
+# Listar otros datos de la Clienta
 def otrosDatos(request):
     msje = " "
     respuesta = requests.get(url_clienta)

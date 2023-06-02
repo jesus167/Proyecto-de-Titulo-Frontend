@@ -52,7 +52,7 @@
                     <td class="centered">{{c.correo}}</td>
                     <td class="centered">{{c.tel}}</td>
                     <td colspan="1">
-                        <button type="button" name="{{c.cod_clienta}}"class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#otrosDatos"><i class="fa-solid fa-eye"></a></i></button>
+                        <button type="button" name="{{c.cod_clienta}}"class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#otrosDatos{{c.cod_clienta}}"><i class="fa-solid fa-eye"></a></i></button>
                         {% include 'Clientas/otrosDatos.html' %}
                     </td>
                     <td colspan="1">
@@ -69,12 +69,3 @@
     </div>
 </section>
 {% endblock %}
-
-{% comment %} <th class="centered">Representante Legal</th>
-<th class="centered">Pais</th>
-<th class="centered">Región</th>
-<th class="centered">Comuna</th>
-<th class="centered">Dirección</th>
-<th class="centered">Número</th>
-<th class="centered">Complemento</th>
-<th class="centered">Giro</th>  {% endcomment %}
