@@ -4,113 +4,126 @@
 
     {% block content %}
 
+    <div>
+        <h1>Registro de Clientas</h1>
+    </div>
 
-        <form class="form_clientas" action="" method="POST">
+    <form class="form_clientas" method="POST">
+        {% csrf_token %}
+        <div class="form_1">
             <div>
-                <h1>Registro de Clientas</h1>
+                <label for="rut">Rut</label>
+                <br>
+                <input type="text" class="form-control" name="rut_clienta" style="width: auto;">
             </div>
-            {% csrf_token %}
-            <div class="form_1">
-                <div>
-                    <label for="rut">Rut</label>
-                    <br>
-                    <input type="text" class="form-control" name="RUT" style="width: 100px;">
-                </div>
-                <div>
-                    <label for="dv">Dv</label>
-                    <br>
-                    <input type="text" name="DV" class="form-control" style="width: 40px;">
-                </div>
-                <div>
-                    <label for="nombre">Nombre</label>
-                    <br>
-                    <input type="text" name="nombre"  class="form-control" style="width: 280px;">
-                </div>
-                <div>
-                    <label for="apellido">Apellido</label>
-                    <br>
-                    <input type="text" name="apellido" class="form-control" style="width: 280px;">
-                </div>
-                <div>
-                    <label for="rut">Tipo de Clienta</label>
-                    <br>
-                    <select class="form-select" name="tipo_clienta"aria-label="Default select example">
-                        <option selected>Seleccione opción</option>
-                        <option value="1">Persona Natural</option>
-                        <option value="2">Persona Jurídica</option>
-                    </select>    
-                </div>
+            <div style="width: 40px; margin-right: 80px;">
+                <label for="rut">DV</label>
+                <br>
+                <input type="text" class="form-control" name="dv_clienta" style="width: 40px;">
             </div>
+            <div>
+                <label for="nombre">Nombre</label>
+                <br>
+                <input type="text" name="nombre"  class="form-control" style="width: auto;">
+            </div>
+            <div>
+                <label for="apellido">Apellido</label>
+                <br>
+                <input type="text" name="apellido" class="form-control" style="width: auto;">
+            </div>
+            <div>
+                <label for="rut">Tipo de Clienta</label>
+                <br>
+                <select class="form-select" name="tipo_clienta"aria-label="Default select example">
+                    <option selected>Seleccione opción</option>
+                    <option value="1">Persona Natural</option>
+                    <option value="2">Persona Jurídica</option>
+                </select>    
+            </div>
+        </div>
+        <div class="form_1">
+            <div>
+                <label for="nombre_fantasia">Nombre de Fantasia</label>
+                <br>
+                <input type="text" name="nombre_fantasia" class="form-control" style="width: 300px;">
+            </div>
+            <div>
+                <label for="email">Correo</label>
+                <br>
+                <input type="email" name="correo"  class="form-control" style="width: 300px;">
+            </div>
+            <div>
+                <label for="telefono">Teléfono</label>
+                <br>
+                <input type="text" name="tel" class="form-control" style="width: auto;">
+            </div>
+            <div>
+                <label for="rut">Representante Legal</label>
+                <br>
+                <select class="form-select" name="rep_legal_cod_rep_legal" aria-label="Default select example" style="width: auto;">
+                    {% for r in rep_legal %}
+                        <option value="{{r.cod_rep_legal}}">{{r.nombre}} {{r.apellido}}</option>
+                    {% endfor %}
+                </select>  
+            </div>
+        </div>
 
-            <div class="form_1">
-                <div>
-                    <label for="nombre_fantasia">Nombre de Fantasia</label>
-                    <br>
-                    <input type="text" name="nombre_fantasia" class="form-control" style="width: 300px;">
-                </div>
-                <div>
-                    <label for="email">Correo</label>
-                    <br>
-                    <input type="email" name="correo"  class="form-control" style="width: 300px;">
-                </div>
-                <div>
-                    <label for="telefono">Teléfono</label>
-                    <br>
-                    <input type="text" name="telefono" class="form-control" style="width: 100px;">
-                </div>
+        <div class="form_1">
+            <div>
+                <label for="exampleDataList" class="form-label">País</label>
+                <select class="form-select" aria-label="Default select example" name="pais_cod_pais">
+                    {% for p in paises %}
+                        <option selected value="{{ p.cod_pais }}">{{ p.pais }}</option>
+                    {% endfor %}
+                </select>
+                
             </div>
-
-            <div class="form_1">
-                <div>
-                    <label for="exampleDataList" class="form-label">País</label>
-                    <select class="form-select" aria-label="Default select example" name="pais">
-                        {% for p in paises %}
-                            <option selected value="{{ p.cod_pais }}">{{ p.pais }}</option>
-                        {% endfor %}
-                    </select>
-                    
-                </div>
-                <div>
-                    <label for="exampleDataList" class="form-label">Región</label>
-                    <select class="form-select" aria-label="Default select example">
-                        {% for r in region %}
-                        <option selected value="{{ r.cod_region }}"> {{ r.region }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div>
-                    <label for="exampleDataList" class="form-label">Comuna</label>
-                    <select class="form-select" aria-label="Default select example" name="comuna">
-                        {% for c in comunas %}
-                        <option selected value="{{ clienta.cod_comuna }}"> {{ c.comuna }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+            <div>
+                <label for="exampleDataList" class="form-label">Región</label>
+                <select class="form-select" aria-label="Default select example">
+                    {% for r in region %}
+                    <option selected value="{{ r.cod_region }}"> {{ r.region }}</option>
+                    {% endfor %}
+                </select>
             </div>
-
-            <div class="form_1">
-                <div>
-                    <label for="direccion">Dirección</label>
-                    <br>
-                    <input type="text" name="direccion" class="form-control" style="width: 300px;">
-                </div>
-                <div>
-                    <label for="numero">Número</label>
-                    <br>
-                    <input type="text" name="numero" class="form-control" style="width: 100px;">
-                </div>
-                <div>
-                    <label for="Complemento">Complemento</label>
-                    <br>
-                    <input type="text" name="Complemento" class="form-control" style="width: 100px;">
-                </div>
-                <div>
-                    <label for="giro">Giro</label>
-                    <br>
-                    <input type="text" name="giro"  class="form-control" style="width: 100px;">
-                </div>
+            <div>
+                <label for="exampleDataList" class="form-label">Comuna</label>
+                <select class="form-select" aria-label="Default select example" name="comuna_cod_comuna">
+                    {% for c in comunas %}
+                    <option selected value="{{ clienta.cod_comuna }}"> {{ c.comuna }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <button type="submit" class="btn btn-dark">Guardar contacto</button>
-        </form>
+        </div>
 
+        <div class="form_1">
+            <div>
+                <label for="direccion">Dirección</label>
+                <br>
+                <input type="text" name="calle" class="form-control" style="width: 300px;">
+            </div>
+            <div>
+                <label for="numero">Número</label>
+                <br>
+                <input type="text" name="numero" class="form-control" style="width: 100px;">
+            </div>
+            <div>
+                <label for="Complemento">Complemento</label>
+                <br>
+                <input type="text" name="complemento" class="form-control" style="width: 100px;">
+            </div>
+            <div>
+                <label for="giro">Giro</label>
+                <br>
+                <input type="text" name="giro"  class="form-control" style="width: 100px;">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Guardar contacto</button>
+    </form>
+
+    <div>
+        <button type="button" name="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rep_legal">Agregar Representante</button>
+            {% include 'Clientas/rep_leg.html' %}
+    </div>
     {% endblock %}

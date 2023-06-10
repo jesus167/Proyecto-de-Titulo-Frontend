@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div class="modal fade" id="rep_legal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registro Representante Legal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="modal-body">
+            <form action="{% url 'repLegal' %}" method="POST">
+              {% csrf_token %}
+                  <div class="mb-3">
+                    <input type="text" class="form-control" name="rut_rep_legal" required style="width: auto;" placeholder="Ingresa Rut">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" class="form-control" name="dv_rep_legal"  required style="width: auto;" placeholder="Ingresa Dv">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" name="nombre"  class="form-control" required style="width: auto;" placeholder="Ingresa nombre">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" name="apellido" class="form-control" required style="width: auto;" placeholder="Ingresa apellido">
+                  </div>
+                  <div class="mb-3">
+                    <input type="email" name="correo"  class="form-control" required  style="width: auto;" placeholder="Ingresa Correo">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" name="tel" class="form-control" required style="width: auto;" placeholder="Ingresa Teléfono">
+                  </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+      </div>
+    </div>
+  </div>

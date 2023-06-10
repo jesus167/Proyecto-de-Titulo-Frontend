@@ -1,0 +1,122 @@
+<!-- Modal -->
+<div class="modal fade" id="editarClienta{{c.cod_clienta}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="modal-body">
+            <form action="" method="POST" class="d-inline-block  flex-wrap mb-3">
+                {% csrf_token %}
+                <div class="d-flex flex-row flex-wrap justify-content-around p-2 m-1">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <br>
+                        <input type="text" name="nombre"  class="form-control" style="width: auto;">
+                    </div>
+                    <div>
+                        <label for="apellido">Apellido</label>
+                        <br>
+                        <input type="text" name="apellido" class="form-control" style="width: auto;">
+                    </div>
+                    <div>
+                        <label for="rut">Tipo de Clienta</label>
+                        <br>
+                        <select class="form-select" name="tipo_clienta"aria-label="Default select example">
+                            <option selected>Seleccione opción</option>
+                            <option value="1">Persona Natural</option>
+                            <option value="2">Persona Jurídica</option>
+                        </select>
+                </div>
+
+                <div class="d-flex flex-row flex-wrap justify-content-around p-2 m-1">
+                    <div>
+                        <label for="nombre_fantasia">Nombre de Fantasia</label>
+                        <br>
+                        <input type="text" name="nombre_fantasia" class="form-control" style="width: 300px;">
+                    </div>
+                    <div>
+                        <label for="email">Correo</label>
+                        <br>
+                        <input type="email" name="correo"  class="form-control" style="width: 300px;">
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono</label>
+                        <br>
+                        <input type="text" name="tel" class="form-control" style="width: auto;">
+                    </div>
+                    <div>
+                        <label for="rut">Representante Legal</label>
+                        <br>
+                        <select class="form-select" name="rep_legal_cod_rep_legal" aria-label="Default select example" style="width: auto;">
+                            {% for r in rep_legal %}
+                                <option value="{{r.cod_rep_legal}}">{{r.nombre}} {{r.apellido}}</option>
+                            {% endfor %}
+                        </select>  
+                    </div>
+                </div>
+                <div class="d-flex flex-row flex-wrap justify-content-around p-2 m-1">
+                    <div>
+                        <label for="exampleDataList" class="form-label">País</label>
+                        <select class="form-select" aria-label="Default select example" name="pais_cod_pais">
+                            {% for p in paises %}
+                                <option selected value="{{ p.cod_pais }}">{{ p.pais }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div>
+                    <div>
+                        <label for="exampleDataList" class="form-label">Región</label>
+                        <select class="form-select" aria-label="Default select example">
+                            {% for r in region %}
+                            <option selected value="{{ r.cod_region }}"> {{ r.region }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="exampleDataList" class="form-label">Comuna</label>
+                        <select class="form-select" aria-label="Default select example" name="comuna_cod_comuna">
+                            {% for c in comunas %}
+                            <option selected value="{{ clienta.cod_comuna }}"> {{ c.comuna }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex flex-row flex-wrap justify-content-around p-2 m-1">
+                    <div>
+                        <label for="direccion">Dirección</label>
+                        <br>
+                        <input type="text" name="calle" class="form-control" style="width: 300px;">
+                    </div>
+                    <div>
+                        <label for="numero">Número</label>
+                        <br>
+                        <input type="text" name="numero" class="form-control" style="width: 100px;">
+                    </div>
+                    <div>
+                        <label for="Complemento">Complemento</label>
+                        <br>
+                        <input type="text" name="complemento" class="form-control" style="width: 100px;">
+                    </div>
+                    <div>
+                        <label for="giro">Giro</label>
+                        <br>
+                        <input type="text" name="giro"  class="form-control" style="width: 100px;">
+                    </div>
+                    <div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

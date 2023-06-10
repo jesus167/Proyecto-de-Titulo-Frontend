@@ -8,9 +8,9 @@
     </div>
 </section>
 
-<section class="container-fluid" style="padding-left: 80px; padding-right: 80px; padding-top: 40px;">
+<section class="container-fluid" style="background-color:#c9ac6fab;">
     <div class="table-responsive">
-        <table class="table table-sm">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">Cód. artículo</th>
@@ -45,7 +45,7 @@
                     <td>{{a.stock}}</td>
                     {% endif %}
                     <td>
-                        <button type="button" class="btn btn-success btn4" data-bs-toggle="modal" data-bs-target="#eliminarArticulo{{a.cod_art}}"><i class="fa-solid fa-trash-can"></i></button>
+                        <button type="button" class="btn btn-danger btn4" data-bs-toggle="modal" data-bs-target="#eliminarArticulo{{a.cod_art}}"><i class="fa-solid fa-trash-can"></i></button>
                         {% include "eliminarArticulo.html" %}
                     </td>
                     <td>
