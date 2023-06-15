@@ -1,0 +1,170 @@
+{% extends 'Home/base.html' %}
+
+    {% load static %}
+
+{% block content %}
+    <div class="container-fluid" style="background-color:#c9ac6fab; padding-bottom: 50px;">
+        <!-- Titulo -->
+        <div class="centered">
+            <h1>Informe de Ventas Banqueteria Maya</h1>
+        </div>
+
+        <!-- Resumen de Ventas -->
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="resumen-forma">
+                        <h2 class="titulo-forma">Total Ventas Mensuales</h2>
+                        <h3 class="titulo-resultado">$ </h3>
+                    </div>
+                    <div class="resumen-forma">
+                        <h2 class="titulo-forma">Costo Mensual</h2>
+                        <h3 class="titulo-resultado">$</h3>
+                    </div>
+                    <div class="resumen-forma">
+                        <h2 class="titulo-forma">Diferencia entre Costo y Ventas</h2>
+                        <h3 class="titulo-resultado"> %</h3>
+                    </div>
+                    <div class="resumen-forma">
+                        <h2 class="titulo-forma">Fecha de reporte</h2>
+                        <h3 class="titulo-resultado"> </h3>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Grafico-->
+                    <div class="col-10 col-sm-10 col-md-10 part1">
+                        <div>
+                            <h3 class="titulo_graph" id ="ventas_anuales" >Ventas Anuales</h3>
+                        </div>
+                        <div class="graph" >
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabla -->
+
+                <div class="col-10 col-sm-5 col-md-5 part1">
+                <div>
+                    <h3 class="titulo_graph">Tabla resumen Mensual</h3>
+                </div>
+
+                <div class="table_data">
+
+                    <table id="example" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td class="centered">Pedidos</td>
+                                <td class="centered">Pedidos Entregados</td>
+                                <td class="centered">Costo Pedido</td>
+                                <td class="centered">Ganancia Ponderada</td>
+                                <td class="centered">Ganancia Mensual</td>
+                                <td class="centered">Total Mensual</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td class="centered">Pedidos</td>
+                                <td class="centered">Pedidos Entregados</td>
+                                <td class="centered">Costo Pedido</td>
+                                <td class="centered">Ganancia Ponderada</td>
+                                <td class="centered">Ganancia Mensual</td>
+                                <td class="centered">Total Mensual</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </section>
+
+    </div> 
+
+{% endblock %}
+
+<!-- Paginación Tabla -->
+    <script>
+		$(function() {
+			$("#example").simplePagination({
+				previousButtonClass: "btn btn-danger",
+				nextButtonClass: "btn btn-danger"
+			});
+		});
+	</script>
+
+<script>
+
+
+    var costo = ;
+    var 
+
+    let miCanvas3 = document.getElementById('myChart3').getContext("2d");
+
+
+        var chart3 = new Chart(miCanvas3, {
+                type: "bar",
+                data: {
+                labels: Venta,
+                datasets: [{
+                    data: NumeroC,
+                    label: 'Ventas del mes',
+                    barThickness:'flex',
+                    backgroundColor:'#03a9fc',  
+                    
+                },
+                ]
+                },
+                options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                }
+            })
+
+        document.querySelector('.selector').addEventListener("change",changeText);
+
+        function changeText(event){
+            if(event.target.value === "contagiados"){
+                Label3 = paisC;
+                estado3 = NumeroC;
+                NewLabel3 = 'Contagiados'
+                chart3.data.labels = Label3;
+                chart3.data.datasets[0].data = estado3;
+                chart3.data.datasets[0].label = NewLabel3;
+                chart3.update();
+
+                document.getElementById('20_paises').innerHTML='20 paises con más contagios';
+
+        }
+            else if(event.target.value === "fallecidos"){
+                Label3 = paisF;
+                estado3 = NumeroF;
+                NewLabel3 = 'Fallecidos';
+                chart3.data.labels = Label3;
+                chart3.data.datasets[0].data = estado3;
+                chart3.data.datasets[0].label = NewLabel3;
+                chart3.update();
+
+                document.getElementById('ventas_anuales').innerHTML='20 paises con más fallecidos';
+
+        }
+            else {
+                Label3 = paisV;
+                estado3 = NumeroV;
+                NewLabel3 = 'Vacunados'
+                chart3.data.labels = Label3;
+                chart3.data.datasets[0].data = estado3;
+                chart3.data.datasets[0].label = NewLabel3;
+                chart3.update();
+
+                document.getElementById('ventas_anuales').innerHTML='20 paises con más vacunados';
+            }
+        }
+    </script>
