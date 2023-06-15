@@ -1,0 +1,19 @@
+<div class="modal" id="simularFt{{ f.cod_ft }}">
+    <!-- Modal content -->
+    <!-- ... Modal content here ... -->
+    <div class="modal-body">
+        <!-- ... Table header and other content ... -->
+        <tbody class="table-group-divider">
+            {% for ingrediente in ingredientes_simulados %}
+                <tr>
+                    <td>{{ ingrediente.nom_item }}</td>
+                    <td>{{ ingrediente.unidad }}</td>
+                    <td>{{ ingrediente.cantidad_sim }}</td>
+                    <td>{{ ingrediente.costo_det_sim }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <!-- ... Table footer and other content ... -->
+    </div>
+    <!-- ... Modal footer and other content ... -->
+</div>

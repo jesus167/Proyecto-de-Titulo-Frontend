@@ -1,0 +1,153 @@
+{% extends "Home/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<script>
+    $(document).ready(function() {
+      $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true
+      });
+    });
+</script>
+ 
+
+
+<div class="row row-cols-3">
+    <!-- Agregar pedido -->
+    <div class="col mb-4">
+        <div class="container-fluid" style="margin-top: 30px;">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="container-fluid">
+                        <h2>Crear pedido</h2>
+    
+                        <div style="margin-top: 20px; width: 350px;">
+
+                            <form method="post" action="{% url 'crearPedido' %}" style="margin-top: 20px;">
+                                {% csrf_token %}
+                                <div class="form-group mb-3" style="max-height: 200px;">
+                                  <select name="clienta_cod_clienta" class="form-control" required data-reset="true" style="width: 350px;">
+                                    <option selected disabled>Seleccionar clienta</option>
+                                    {% for c in clienta %}
+                                        <option value="{{c.cod_clienta}}">{{c.nombre}} {{c.apellido}}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control datepicker" id="date-input" name="fecha_compromiso" placeholder="Fecha de compromiso">
+                                </div>
+                
+                                <div class="modal-footer">
+                                    <a href="{% url 'pedido' %}" class="btn btn-danger">Volver</a>
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                </div>
+                              </form>
+
+                        </div>                     
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Agregar ítem -->
+    <div class="col mb-4">
+        <div class="container-fluid" style="margin-top: 30px;">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="container-fluid">
+                        <h2>Agregar ítem</h2>
+                        <h6>Puedes agregar ítems a tu pedido</h6>
+                        <div style="margin-top: 20px; width: 350px;">
+                            
+                            <form id="registroForm1" method="post" action="{% url 'registrarDetallePedido' %}" style="margin-top: 20px;">
+                                {% csrf_token %}
+                                <div class="form-group mb-3" style="max-height: 200px;">
+                                  <input type="hidden" name="categoria" value=1>
+                                  <select name="pedido_cod_pedido" class="form-control" required data-reset="true" style="width: 350px;">
+                                    <option selected disabled>Seleccionar pedido</option>
+                                    {% for p in pedido %}
+                                        <option value="{{ p.cod_pedido }}">{{ p.cod_pedido }}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                                <div class="form-group mb-3" style="max-height: 200px;">
+                                    <select name="item_cod_item" class="form-control" required data-reset="true" style="width: 350px;">
+                                      <option selected disabled>Seleccionar ítem</option>
+                                      {% for i in item %}
+                                          <option value="{{i.cod_item}}">{{i.nom_item}}</option>
+                                      {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" name="cantidad" class="form-control" required placeholder="Cantidad" style="width: 350px;">
+                                </div>
+                 
+                                <div class="modal-footer" style="margin-top: 40px; width: 350px;">
+                                    <a href="{% url 'pedido' %}" class="btn btn-danger">Volver</a>
+                                    <button type="submit" class="btn btn-success">Registrar</button>
+                                </div>
+                              </form>
+
+                        </div>                     
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Agregar FT -->
+    <div class="col mb-4">
+        <div class="container-fluid" style="margin-top: 30px;">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="container-fluid">
+                        <h2>Agregar fichas técnicas</h2>
+                        <h6>Puedes agregar fichas técnicas a tu pedido</h6>
+                        
+                        <div style="margin-top: 20px; width: 350px;">
+
+                            <form id="registroForm2" method="post" action="{% url 'registrarDetallePedido' %}" style="margin-top: 20px;">
+                                {% csrf_token %}
+                                <div class="form-group mb-3" style="max-height: 200px;">
+                                    <input type="hidden" name="categoria" value=2>
+                                    <select name="pedido_cod_pedido" class="form-control" required data-reset="true" style="width: 350px;">
+                                      <option selected disabled>Seleccionar pedido</option>
+                                      {% for p in pedido %}
+                                          <option value="{{ p.cod_pedido }}">{{ p.cod_pedido }}</option>
+                                      {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3" style="max-height: 200px;">
+                                  <select name="ft_cod_ft" class="form-control" required data-reset="true" style="width: 350px;">
+                                    <option selected disabled>Seleccionar ficha técnica</option>
+                                    {% for f in ft %}
+                                        <option value="{{f.cod_ft}}">{{f.nom_ft}}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" name="cantidad" class="form-control" required placeholder="Cantidad de raciones" style="width: 350px;">
+                                </div>  
+                 
+                                <div class="modal-footer" style="margin-top: 40px; width: 350px;">
+                                    <a href="{% url 'pedido' %}" class="btn btn-danger">Volver</a>
+                                    <button type="submit" class="btn btn-success">Registrar</button>
+
+                                </div>
+                              </form>  
+
+                        </div>                     
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

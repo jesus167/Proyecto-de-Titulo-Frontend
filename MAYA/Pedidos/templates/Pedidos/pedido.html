@@ -1,0 +1,109 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+{% if request.GET.msje1 and request.GET.msje1 %}
+{% with msje1=request.GET.msje1 msje2=request.GET.msje2  %}
+<div style="margin-left: 300px; margin-right: 300px; margin-top: 10px;">
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <div class="col"><strong>{{ msje1 }}</strong> {{ msje2 }}</div>
+        <div class="col-auto">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="outline: none;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+{% endwith %}
+{% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      $('.alert').alert()
+    })
+</script>
+  
+<section class="container-fluid">
+    <div>
+        <h1 class="w-100" style="text-align: center; margin-top: 40px;">Pedidos</h1>
+    </div>
+</section>
+
+<section class="container-fluid" style="padding-left: 150px; padding-right: 150px; padding-top: 40px;">
+
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Fecha registro</th>
+                <th scope="col">Fecha compromiso</th>
+                <th scope="col">Clienta</th>
+                <!-- <th scope="col">Costo total</th> -->
+                <!-- <th scope="col">Margen</th> -->
+                <th scope="col">Precio venta</th>
+                <th scope="col">Estado</th>
+
+                <th scope="col">
+                    <a href="{% url "crearPedido" %}">
+                        <button type="button" class="btn btn-success btn1"><i class="fa-solid fa-square-plus"></i></button>
+                    </a>
+                </th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <!-- <th scope="col"></th> -->
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for p in pedido %}
+                <tr>
+                    <th scope="row">{{p.cod_pedido}}</th>
+                    <td>{{p.fecha_registro}}</td>
+                    <td>{{p.fecha_compromiso}}</td>
+                    <td>
+                        {% for c in clienta %}
+                          {% if p.clienta_cod_clienta == c.cod_clienta %}
+                            {{ c.nombre }} {{ c.apellido }}
+                          {% endif %}
+                        {% endfor %}
+                    </td>
+                    <!-- <td>$ {{p.costo_tot}}</td> -->
+                    <!-- <td>{{p.margen}}%</td> -->
+                    <td>$ {{p.precio|intcomma}}</td>
+                    <td>
+                      {% for e in estado %}
+                        {% if p.estado_pedido_cod_estado == e.cod_estado %}
+                          {{ e.estado }}
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-success btn4" data-bs-toggle="modal" data-bs-target="#eliminarPedido{{p.cod_pedido}}"><i class="fa-solid fa-trash-can"></i></button>
+                        {% include "Pedidos/eliminarPedido.html" %}
+                    </td>
+                    <!-- <td>
+                        <button type="button" class="btn btn-success btn3" data-bs-toggle="modal" data-bs-target=""><i class="fa-solid fa-pen-to-square"></i></button>
+                    </td> -->
+                    <td>
+                        <button type="button" class="btn btn-success" style="background-color: rgb(130, 134, 134); border-color: rgb(130, 134, 134);" data-bs-toggle="modal" data-bs-target="#asignarUsuaria{{ p.cod_pedido }}"><i class="fa-solid fa-user-plus"></i></button>
+                        {% include "Pedidos/asignarUsuaria.html" %}                      
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success" style="background-color: rgb(54, 108, 108); border-color: rgb(54, 108, 108);" data-bs-toggle="modal" data-bs-target="#actualizarEstado{{ p.cod_pedido }}"><i class="fa-solid fa-circle-arrow-right"></i></button>
+                        {% include "Pedidos/actualizarEstado.html" %}                      
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success btn5" data-bs-toggle="modal" data-bs-target="#verPedido{{ p.cod_pedido }}"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        {% include "Pedidos/verPedido.html" %}                      
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,178 @@
+<!-- The Modal -->
+{% load humanize %}
+<div class="modal" id="verPedido{{ p.cod_pedido }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div style="display: flex; flex-direction: column;">
+                    <div class="row">
+                        <h2 class="modal-title">Pedido #{{ p.cod_pedido }}</h2>
+                    </div>
+                    <div>
+                        <h6>Estado: 
+                          {% for e in estado %}
+                            {% if p.estado_pedido_cod_estado == e.cod_estado %}
+                              {{ e.estado }}
+                            {% endif %}
+                          {% endfor %}
+                        </h6>
+                        <h6>Usuaria asignada:
+                            {% if p.usuaria_id_usuaria == None %}
+                              Pedido no asignado
+                            {% endif %}
+                            {% for u in usuaria %}
+                              {% if p.usuaria_id_usuaria == u.id_usuaria %}
+                                {{ u.nombre }} {{ u.apellido }}
+                              {% endif %}
+                            {% endfor %}
+                        </h6>
+                    </div>
+                </div>
+                <img src="../static/img/logo-h.png" style="height: 40px;">
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div style="padding: 10px;">
+                    <div class="row bg-color1" style="height: 30px; text-align: center; display: flex; align-items: center">
+                        <h5 style="color: white;">Detalle del pedido</h5>
+                    </div>
+                    <div>
+                        <section class="container-fluid" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Ítem / FT</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Unidad</th>
+                                        <th scope="col">Costo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        {% for dp in detallepedido|dictsort:"id_registro" %}
+                                            {% if dp.pedido_cod_pedido == p.cod_pedido %}
+                                            <tr>
+                                                <td scope="row">
+                                                    {% if dp.item_cod_item %}
+                                                        {% for i in item %}
+                                                            {% if i.cod_item == dp.item_cod_item %}
+                                                                {{ i.nom_item }}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    {% if dp.ft_cod_ft %}
+                                                        {% for f in ft %}
+                                                            {% if f.cod_ft == dp.ft_cod_ft %}
+                                                                {{ f.nom_ft }}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{dp.cantidad|intcomma}}</td>                                          
+                                                <td>
+                                                    {% if dp.item_cod_item %}
+                                                        {% for i in item %}
+                                                        {% if i.cod_item == dp.item_cod_item %}
+                                                            {% for u in unidad %}
+                                                            {% if u.cod_unidad == i.unidad_cod_unidad %}
+                                                                {{ u.unidad }}
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    {% if dp.ft_cod_ft %}
+                                                        raciones
+                                                    {% endif %}
+                                                </td>
+                                                <td>$ {{dp.costo_det|intcomma}}</td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot class="table-footer" style="background-color: #eff4f2;">
+                                        <tr>
+                                            <td colspan="3" style="font-weight: bold;">Costo total</td>
+                                            <td style="font-weight: bold;">$ {{ p.costo_tot|intcomma }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" style="font-weight: bold;">Margen</td>
+                                            <td style="font-weight: bold;">{{ p.margen }}%</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" style="font-weight: bold;">Precio</td>
+                                            <td style="font-weight: bold;">$ {{ p.precio|intcomma }}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row bg-color1" style="height: 30px; text-align: center; display: flex; align-items: center;">
+                        <h5 style="color: white;">Datos de contacto clienta</h5>
+                    </div>
+                    <div>
+                        <section class="container-fluid" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+                            <div class="table-responsive">
+                                <table class="table table-sm" style="background-color: #eff4f2;">
+                                    <tbody class="table-group-divider">
+                                        {% for c in clienta %}
+                                            {% if p.clienta_cod_clienta == c.cod_clienta %}
+                                            <tr>
+                                                <td scope="row" style="width: 40px; padding-left: 8px;">
+                                                    <img src="../static/img/tracker.png" alt="" style="width: 20px; height: 20px; margin-right: 10px;">
+                                                </td>
+                                                <th scope="row" style="width: 200px;" class="color1">Nombre</th>
+                                                <td>{{ c.nombre }} {{ c.apellido }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" style="padding-left: 8px;">
+                                                    <img src="../static/img/tracker.png" alt="" style="width: 20px; height: 20px; margin-right: 10px;">
+                                                </td>
+                                                <th scope="row" class="color1">Teléfono</th>
+                                                <td>{{ c.tel }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" style="padding-left: 8px;">
+                                                    <img src="../static/img/tracker.png" alt="" style="width: 20px; height: 20px; margin-right: 10px;">
+                                                </td>
+                                                <th scope="row" class="color1">Correo electrónico</th>
+                                                <td>{{ c.correo }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" style="padding-left: 8px;">
+                                                    <img src="../static/img/tracker.png" alt="" style="width: 20px; height: 20px; margin-right: 10px;">
+                                                </td>
+                                                <th scope="row" class="color1">Dirección</th>
+                                                {% for com in comuna %}
+                                                    {% if c.comuna_cod_comuna == com.cod_comuna %}
+                                                        <td>{{ c.calle }} {{ c.numero }}, {{com.comuna}}</td>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" style="padding-left: 8px;">
+                                                    <img src="../static/img/tracker.png" alt="" style="width: 20px; height: 20px; margin-right: 10px;">
+                                                </td>
+                                                <th scope="row" class="color1">Código de clienta</th>
+                                                <td>{{ c.cod_clienta }}</td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </section>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

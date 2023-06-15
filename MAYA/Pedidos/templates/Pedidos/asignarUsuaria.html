@@ -1,0 +1,48 @@
+<!-- The Modal -->
+<div class="modal" id="asignarUsuaria{{ p.cod_pedido }}">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Asignar pedido</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div style="margin-bottom: 20px;">
+                <h6>Selecciona la usuaria a la que se asignará el pedido</h6>
+            </div>
+            <div>
+                <form method="post" action="{% url 'asignarUsuaria' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="cod_pedido" value="{{ p.cod_pedido }}">
+                    <select name="id_usuaria" class="form-control" required data-reset="true" style="width: 350px;">
+                    <option selected disabled>Seleccionar usuaria</option>
+                    {% for u in usuaria %}
+                        <option value="{{ u.id_usuaria }}">{{ u.nombre }} {{ u.apellido }}</option>
+                    {% endfor %}
+                    </select>
+    
+                    <div class="modal-footer" style="margin-top: 40px;">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Agregar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function reset() {
+      $('[data-reset="true"]').prop('selectedIndex', 0);
+    }
+    $('#asignarUsuaria{{ p.cod_pedido }}').on('show.bs.modal', function (e) {
+      reset();
+    });
+</script>

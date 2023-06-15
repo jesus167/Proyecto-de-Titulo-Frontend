@@ -1,0 +1,60 @@
+<!-- The Modal -->
+<div class="modal" id="actualizarEstado{{ p.cod_pedido }}">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Actualizar estado del pedido</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div style="margin-bottom: 20px;">
+                <h6>Selecciona el nuevo estado del pedido</h6>
+            </div>
+            <div>
+                <form method="post" action="{% url 'actualizarEstado' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="cod_pedido" value="{{ p.cod_pedido }}">
+
+                    <select name="new_estado" class="form-control" required data-reset="true" style="width: 350px;">
+                        <option selected disabled>Seleccionar estado</option>
+                        {% if p.estado_pedido_cod_estado == 1 %}
+                            <option value="7">RECHAZADO</option>
+                        {% elif p.estado_pedido_cod_estado == 2 %}
+                            <option value="3">EN PRODUCCIÓN</option>
+                            <option value="6">CANCELADO</option>
+                        {% elif p.estado_pedido_cod_estado == 3 %}
+                            <option value="4">TERMINADO</option>
+                            <option value="6">CANCELADO</option>
+                        {% elif p.estado_pedido_cod_estado == 4 %}
+                            <option value="5">ENTREGADO</option>
+                            <option value="6">CANCELADO</option>
+                        {% elif p.estado_pedido_cod_estado == 5 or p.estado_pedido_cod_estado == 6 or p.estado_pedido_cod_estado == 6 %}
+                            <option disabled>No es posible actualizar</option>
+                        {% endif %}
+                    </select>
+    
+                    <div class="modal-footer" style="margin-top: 40px;">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function reset() {
+      $('[data-reset="true"]').prop('selectedIndex', 0);
+    }
+    $('#actualizarEstado{{ p.cod_pedido }}').on('show.bs.modal', function (e) {
+      reset();
+    });
+</script>

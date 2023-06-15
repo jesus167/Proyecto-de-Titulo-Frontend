@@ -1,3 +1,8 @@
 Django==4.0.3
 Requests==2.30.0
 crispy-bootstrap5==0.7
+Pillow
+django-crispy-forms
+crispy-bootstrap5
+django-widget-tweaks==1.4.12
+highcharts-core

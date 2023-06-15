@@ -1,0 +1,230 @@
+{% extends "plantilla.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<section class="container-fluid">
+    <div>
+        <h1 class="w-100" style="text-align: center; margin-top: 40px;">Listado de fichas técnicas</h1>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row align-items-start">
+      <div class="col-8">
+
+        <section class="container-fluid" style="padding-top: 40px;">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Ficha técnica</th>
+                        <th scope="col">Rendimiento</th>
+                        <th scope="col">Costo total</th>
+                        <th scope="col">
+                            <a href="/crearFt">
+                                <button type="button" class="btn btn-success btn1"><i class="fa-solid fa-square-plus"></i></button>
+                            </a>
+                        </th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for f in ft %}
+                        <tr>
+                            <th scope="row">{{f.cod_ft}}</th>
+                            <td>{{f.nom_ft}}</td>
+                            <td>{{f.rendimiento}} raciones</td>
+                            <td>$ {{f.costo_tot|intcomma}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn4" data-bs-toggle="modal" data-bs-target="#eliminarFt{{f.cod_ft}}"><i class="fa-solid fa-trash-can"></i></button>
+                                {% include "eliminarFt.html" %}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success btn3" data-bs-toggle="modal" data-bs-target=""><i class="fa-solid fa-pen-to-square"></i></button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success btn5" data-bs-toggle="modal" data-bs-target="#verFt{{ f.cod_ft }}"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                {% include "verFt.html" %}                      
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+      </div>
+      
+      <div class="col">
+
+        <section class="container-fluid" style="padding-top: 40px;">
+            <div class="container-fluid">
+                <h3>Simulador</h3>
+
+                <div style="margin-top: 20px; width: 250px;">
+                    
+                    <form id="registroForm1" method="post" action="{% url 'simularFt' %}" style="margin-top: 20px;">
+                        {% csrf_token %}
+                        <div class="form-group mb-3" style="max-height: 200px;">
+                          <select name="ft_cod_ft" class="form-select" required data-reset="true" style="width: 250px;">
+                            <option value="" disabled selected>Seleccionar ficha técnica</option>
+                            {% for f in ft %}
+                              <option value="{{f.cod_ft}}">{{f.nom_ft}}</option>
+                            {% endfor %}
+                          </select>
+                          <div class="invalid-feedback">Por favor, selecciona una opción de la lista.</div>
+                        </div>
+                        <div class="mb-3">
+                          <input type="number" name="personas" class="form-control" required placeholder="Cantidad de personas" style="width: 250px;" min="1">
+                        </div>
+                        <div class="mb-3 d-flex justify-content-end">
+                          <button type="submit" class="btn btn-success btn5">Simular ingredientes</button>
+                        </div>
+                      </form>
+            
+                </div>                     
+                
+            </div>
+        </section>
+
+      </div>
+
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="simularFtModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div style="display: flex; flex-direction: column;">
+                    <div class="row">
+                        <h2 class="modal-title"></h2>
+                    </div>
+                </div>
+                <img src="../static/img/logo-h.png" style="height: 40px;">
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div style="padding: 10px;">
+                    <div class="row bg-color1" style="height: 30px; text-align: center; display: flex; align-items: center">
+                        <h5 style="color: white;"></h5>
+                    </div>
+                    <div>
+                        <section class="container-fluid" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Ingrediente</th>
+                                        <th scope="col">Unidad</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Costo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+
+                                    </tbody>
+
+                                    <tfoot class="table-footer" style="background-color: #eff4f2;">
+                                        <tr>
+                                            <td colspan="3" style="font-weight: bold;">Costo total:</td>
+                                            <td style="font-weight: bold;"></td>
+                                        </tr>
+                                    </tfoot>
+                                    
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn1" data-bs-dismiss="modal">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para simulador -->
+<script>
+    document.querySelector('#registroForm1').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if ('ingredientes_simulados' in data && 'ft_simulada' in data) {
+                const ingredientesSimulados = data.ingredientes_simulados;
+                const ftSimulada = data.ft_simulada;
+
+                const modalTitle = document.querySelector('#simularFtModal .modal-title');
+                modalTitle.innerHTML = `
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="row">
+                            <h2 class="modal-title">${ftSimulada.nom_ft} (${ftSimulada.personas} personas)</h2>
+                        </div>
+                        <div>
+                            <h6>Ficha técnica #${ftSimulada.cod_ft}</h6>
+                        </div>
+                    </div>
+                `;
+
+                const ingredientesHeader = document.querySelector('#simularFtModal .modal-body h5');
+                ingredientesHeader.innerHTML = `Ingredientes (${ftSimulada.personas} raciones)`;
+
+                const ingredientesTable = document.querySelector('#simularFtModal tbody');
+                ingredientesTable.innerHTML = '';
+
+                ingredientesSimulados.forEach(ingrediente => {
+                    const row = document.createElement('tr');
+
+                    const nomItemCell = document.createElement('td');
+                    nomItemCell.textContent = ingrediente.nom_item;
+
+                    const unidadCell = document.createElement('td');
+                    unidadCell.textContent = ingrediente.unidad;
+
+                    const cantidadSimCell = document.createElement('td');
+                    cantidadSimCell.textContent = ingrediente.cantidad_sim.toLocaleString();
+
+                    const costoDetSimCell = document.createElement('td');
+                    costoDetSimCell.textContent = '$ ' + ingrediente.costo_det_sim.toLocaleString();
+
+                    row.appendChild(nomItemCell);
+                    row.appendChild(unidadCell);
+                    row.appendChild(cantidadSimCell);
+                    row.appendChild(costoDetSimCell);
+
+                    ingredientesTable.appendChild(row);
+                });
+
+                const costoTotalCell = document.querySelector('#simularFtModal tfoot td:last-child');
+                costoTotalCell.textContent = `$ ${ftSimulada.costo_tot_sim.toLocaleString()}`;
+
+                const modal = new bootstrap.Modal(document.querySelector('#simularFtModal'));
+                modal.show();
+            }
+            form.reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+
+{% endblock %}

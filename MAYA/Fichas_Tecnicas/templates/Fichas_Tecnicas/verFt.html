@@ -1,0 +1,135 @@
+{% load humanize %}
+<!-- The Modal -->
+<div class="modal" id="verFt{{ f.cod_ft }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div style="display: flex; flex-direction: column;">
+                    <div class="row">
+                        <h2 class="modal-title"> {{ f.nom_ft }}</h2>
+                    </div>
+                    <div>
+                        <h6>(Ficha técnica #{{ f.cod_ft }})</h6>
+                    </div>
+                </div>
+                <img src="../static/img/logo-h.png" style="height: 40px;">
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div style="padding: 10px;">
+                    <div class="row bg-color1" style="height: 30px; text-align: center; display: flex; align-items: center">
+                        <h5 style="color: white;">Ingredientes ({{ f.rendimiento }} raciones)</h5>
+                    </div>
+                    <div>
+                        <section class="container-fluid" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Ingrediente</th>
+                                        <th scope="col">Unidad</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Costo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        {% for di in det_ingr|dictsort:"id" %}
+                                            {% if di.ft_cod_ft == f.cod_ft %}
+                                            <tr>
+                                                <td scope="row">
+                                                    {% for i in item %}
+                                                      {% if i.cod_item == di.item_cod_item %}
+                                                        {{ i.nom_item }}
+                                                      {% endif %}
+                                                    {% endfor %}
+                                                </td>                                                 
+                                                <td>
+                                                    {% for it in item %}
+                                                      {% if it.cod_item == di.item_cod_item %}
+                                                        {% for u in unidad %}
+                                                          {% if u.cod_unidad == it.unidad_cod_unidad %}
+                                                            {{ u.unidad }}
+                                                          {% endif %}
+                                                        {% endfor %}
+                                                      {% endif %}
+                                                    {% endfor %}
+                                                  </td>
+                                                <td>{{di.cantidad|intcomma}}</td>
+                                                <td>$ {{di.costo_det|intcomma}}</td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot class="table-footer" style="background-color: #eff4f2;">
+                                        <tr>
+                                            <td colspan="3" style="font-weight: bold;">Costo total:</td>
+                                            <td style="font-weight: bold;">$ {{ f.costo_tot|intcomma }}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row bg-color1" style="height: 30px; text-align: center; display: flex; align-items: center; margin-bottom: 10px;">
+                        <h5 style="color: white;">Preparación</h5>
+                    </div>
+                    <div>
+
+                        <section class="container-fluid" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+
+                                    <tbody class="table-group-divider">
+                                        {% for dp in det_prep|dictsort:"id" %}
+                                            {% if dp.ft_cod_ft == f.cod_ft %}
+                                            <tr>
+                                                <td scope="row">
+                                                    <!-- <div style="width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 20px;" class="bg-color1">
+                                                        1
+                                                    </div> -->
+                                                    <img src="../static/img/tracker.png" alt="" style="width: 20px; height: 20px; margin-right: 10px;">
+                                                </td>                                                 
+                                                <td>
+                                                    <p>{{ dp.instruccion }}</p>
+                                                </td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </section>
+                        
+                    </div>
+                    <div class="row bg-color1" style="height: 30px; text-align: center; display: flex; align-items: center;">
+                        <h5 style="color: white;">Observaciones</h5>
+                    </div>
+                    <div>
+                        <section class="container-fluid" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+                            <div class="row">
+                                <div class="col-7" style="padding: 10px;">
+                                    <p>{{ f.observacion }}</p>
+                                </div>
+                                <div class="col-5 text-end">
+                                    {% if f.img_ft %}
+                                    <img src="{{ f.img_ft }}" alt="Ficha Técnica" style="height: 200px; margin-top: 10px; margin-bottom: 10px;">
+                                    {% endif %}
+                                </div>
+                            </div>                       
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn1" data-bs-dismiss="modal">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
